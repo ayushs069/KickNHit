@@ -1,0 +1,30 @@
+{
+  "name": "kicknhit",
+  "version": "1.0.0",
+  "description": "KickNHit - Cricket and Football Equipment Store",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sports",
+    "cricket",
+    "football",
+    "equipment",
+    "nodejs",
+    "express",
+    "mongodb",
+    "hbs"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "hbs": "^4.2.0"
+  }
+}

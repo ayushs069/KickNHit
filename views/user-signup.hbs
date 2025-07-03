@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Header -->
+        <header class="auth-header">
+            <a href="/" class="auth-logo">
+                <h1 class="nav-brand">KickNHit</h1>
+            </a>
+            <h2 class="auth-title">Join KickNHit</h2>
+            <p class="auth-subtitle">Create your account and start shopping</p>
+        </header>
+
+        <!-- Signup Form -->
+        <main class="auth-form">
+            {{#if error}}
+                <div class="error-box">
+                    <div class="error-content">
+                        <span class="error-icon">⚠️</span>
+                        <p class="error-text">{{error}}</p>
+                    </div>
+                </div>
+            {{/if}}
+            
+            <form action="/user/signup" method="POST">
+                <!-- Name Fields -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">
+                            First Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            name="firstName" 
+                            required
+                            class="form-input"
+                            placeholder="John"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">
+                            Last Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            name="lastName" 
+                            required
+                            class="form-input"
+                            placeholder="Doe"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required
+                        class="form-input"
+                        placeholder="john@example.com"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        Password
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        minlength="6"
+                        class="form-input"
+                        placeholder="Minimum 6 characters"
+                    >
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem;">Password must be at least 6 characters long</p>
+                </div>
+
+                
+                <button type="submit" class="btn btn-primary btn-full btn-lg">
+                    🎯 Create Account
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p style="margin-bottom: 1rem; color: #6b7280; font-size: 0.875rem;">
+                    Already have an account? 
+                    <a href="/user/login" class="auth-link">
+                        Sign in here
+                    </a>
+                </p>
+                <a href="/" class="auth-link">
+                    ← Back to Home
+                </a>
+            </div>
+        </main>
+
+        <!-- Benefits -->
+        <div style="background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
+            <h4 style="font-size: 0.875rem; font-weight: 500; color: #111827; margin-bottom: 0.75rem;">Why join KickNHit?</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.75rem; color: #6b7280;">
+                <div style="display: flex; align-items: center;">
+                    <span style="color: #059669; margin-right: 0.5rem;">✓</span>
+                    <span>Exclusive access to premium sports equipment</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <span style="color: #059669; margin-right: 0.5rem;">✓</span>
+                    <span>Free shipping on orders above ₹999</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <span style="color: #059669; margin-right: 0.5rem;">✓</span>
+                    <span>Early access to new arrivals and sales</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
