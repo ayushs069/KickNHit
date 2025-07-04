@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - KickNHit</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="/" class="nav-brand">KickNHit Admin</a>
+            </div>
+
+            <div class="nav-links">
+                <a href="#products" class="nav-link">📦 Products</a>
+                <a href="#add-product" class="nav-link">➕ Add Product</a>
+            </div>
+
+            <div class="nav-user">
+                <span class="nav-user-info">Admin: <strong>{{user.firstName}}</strong></span>
+                <form action="/logout" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-outline btn-sm">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT88t-7hjRC1HmtLkJQOUua8w11fNxYPnsLAg&s"
+                alt="Admin Dashboard"
+                class="hero-image"
+            />
+            <h1 class="hero-title">Admin Dashboard</h1>
+            <p class="hero-subtitle">
+                Manage your sports equipment inventory and add new products to the store.
+            </p>
+            <p class="hero-description">
+                View all products that customers see and add new items to expand your catalog.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Brands</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Form -->
+    <section id="add-product" class="form-section">
+        <div class="container">
+            <div class="form-title">Add New Product</div>
+            <div class="form-description">Add new items to your store inventory</div>
+
+            <div class="form-container">
+                <form id="add-product-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="product-name" class="form-label">Product Name</label>
+                            <input type="text" id="product-name" name="productName" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price" class="form-label">Price (₹)</label>
+                            <input type="number" id="product-price" name="productPrice" required class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description" class="form-label">Description</label>
+                        <textarea id="product-description" name="productDescription" rows="3" required class="form-textarea"></textarea>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="product-category" class="form-label">Category</label>
+                            <select id="product-category" name="productCategory" required class="form-select">
+                                <option value="">Select Category</option>
+                                <option value="cricket">Cricket</option>
+                                <option value="football">Football</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image" class="form-label">Image URL</label>
+                            <input type="url" id="product-image" name="productImage" required class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Add Product to Store
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories Section -->
+    <section id="products" class="py-16 bg-white">
+        <div    <!-- Product Categories -->
+    <section id="products" class="section">
+        <div class="container-wide">
+            <div class="section-title">Current Product Catalog</div>
+            <div class="section-description">View all products that customers can see and purchase</div>
+
+            <!-- Category Tabs -->
+            <div class="tabs">
+                <div class="tab-container">
+                    <button onclick="showCategory('cricket')" id="cricket-tab" class="tab-button active">
+                        🏏 Cricket
+                    </button>
+                    <button onclick="showCategory('football')" id="football-tab" class="tab-button">
+                        ⚽ Football
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cricket Products -->
+            <div id="cricket-products">
+                <!-- Carousel View -->
+                <div id="cricket-carousel" class="hidden">
+                    <div class="carousel-controls">
+                        <h3 style="font-size: 1.25rem; font-weight: bold;">Cricket Products</h3>
+                        <div class="carousel-nav">
+                            <button onclick="scrollCarousel('cricket-carousel-items', -1)" class="carousel-btn">
+                                ←
+                            </button>
+                            <button onclick="scrollCarousel('cricket-carousel-items', 1)" class="carousel-btn">
+                                →
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-carousel" id="cricket-carousel-items">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Grid View -->
+                <div id="cricket-grid" class="product-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Football Products -->
+            <div id="football-products" class="hidden">
+                <!-- Carousel View -->
+                <div id="football-carousel" class="hidden">
+                    <div class="carousel-controls">
+                        <h3 style="font-size: 1.25rem; font-weight: bold;">Football Products</h3>
+                        <div class="carousel-nav">
+                            <button onclick="scrollCarousel('football-carousel-items', -1)" class="carousel-btn">
+                                ←
+                            </button>
+                            <button onclick="scrollCarousel('football-carousel-items', 1)" class="carousel-btn">
+                                →
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-carousel" id="football-carousel-items">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Grid View -->
+                <div id="football-grid" class="product-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="section" style="background: #f9fafb;">
+        <div class="container-wide">
+            <div class="section-title">Featured Products</div>
+            <div class="section-description">Hand-picked favorites loved by professionals</div>
+
+            <div class="product-grid">
+                <!-- Featured Cricket Bat -->
+                <div class="card featured-card">
+                    <div style="position: relative;">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVi_V4PxSEsCrR_qmOF9MtDzxJnKpBI3-ikg&s"
+                            alt="Professional Cricket Bat" class="card-img">
+                        <div class="featured-badge">FEATURED</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Professional Cricket Bat Pro</h3>
+                        <p class="card-description">Premium English willow, used by international players</p>
+                        <div class="card-footer">
+                            <span class="card-price">₹4,999</span>
+                            <div class="card-actions">
+                                <button onclick="editProduct('featured-bat')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('featured-bat')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Football Boots -->
+                <div class="card featured-card">
+                    <div style="position: relative;">
+                        <img src="https://i.ebayimg.com/images/g/wqwAAOSwU0JjFook/s-l1200.webp"
+                            alt="Professional Football Boots" class="card-img">
+                        <div class="featured-badge">FEATURED</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Elite Football Boots</h3>
+                        <p class="card-description">Professional grade boots with advanced grip technology</p>
+                        <div class="card-footer">
+                            <span class="card-price">₹5,999</span>
+                            <div class="card-actions">
+                                <button onclick="editProduct('featured-boots')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('featured-boots')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Kit -->
+                <div class="card featured-card">
+                    <div style="position: relative;">
+                        <img src="https://cdnmedia.dsc-cricket.com/media/catalog/product/cache/5b0ea239e50527b43e3253a7f103e237/d/s/dsc-2020-cricket-kit_2.webp"
+                            alt="Complete Cricket Kit" class="card-img">
+                        <div class="featured-badge">FEATURED</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Complete Cricket Kit</h3>
+                        <p class="card-description">Everything you need: bat, pads, gloves, helmet</p>
+                        <div class="card-footer">
+                            <span class="card-price">₹8,999</span>
+                            <div class="card-actions">
+                                <button onclick="editProduct('featured-kit')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('featured-kit')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sale Section -->
+    <section id="sale" class="sale-section">
+        <div class="container-wide">
+            <div class="section-title">Flash Sale - Limited Time!</div>
+            <div class="section-description">Up to 40% off on selected items</div>
+
+            <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <!-- Sale Item 1 -->
+                <div class="card sale-card">
+                    <div style="position: relative;">
+                        <img src="https://a2cricket.com/cdn/shop/files/A2Cricket-CricketBattingPads_7_1400x.jpg?v=1690984808"
+                            alt="Cricket Pads" class="card-img">
+                        <div class="sale-badge">40% OFF</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Cricket Batting Pads</h3>
+                        <div class="card-footer">
+                            <div class="sale-price">
+                                <span class="sale-price-main">₹1,199</span>
+                                <span class="original-price">₹1,999</span>
+                            </div>
+                            <div class="card-actions">
+                                <button onclick="editProduct('sale-pads')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('sale-pads')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sale Item 2 -->
+                <div class="card sale-card">
+                    <div style="position: relative;">
+                        <img src="https://contents.mediadecathlon.com/p2571328/bcd3c25846279cde8d74b9996aef2566/p2571328.jpg?format=auto&quality=70&f=2520x0"
+                            alt="Football" class="card-img">
+                        <div class="sale-badge">35% OFF</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Professional Football</h3>
+                        <div class="card-footer">
+                            <div class="sale-price">
+                                <span class="sale-price-main">₹1,299</span>
+                                <span class="original-price">₹1,999</span>
+                            </div>
+                            <div class="card-actions">
+                                <button onclick="editProduct('sale-football')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('sale-football')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sale Item 3 -->
+                <div class="card sale-card">
+                    <div style="position: relative;">
+                        <img src="https://sportsgoodsmarket.com/wp-content/uploads/2020/12/PRO-5-scaled.jpg"
+                            alt="Cricket Gloves" class="card-img">
+                        <div class="sale-badge">30% OFF</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Cricket Batting Gloves</h3>
+                        <div class="card-footer">
+                            <div class="sale-price">
+                                <span class="sale-price-main">₹629</span>
+                                <span class="original-price">₹899</span>
+                            </div>
+                            <div class="card-actions">
+                                <button onclick="editProduct('sale-gloves')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('sale-gloves')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sale Item 4 -->
+                <div class="card sale-card">
+                    <div style="position: relative;">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFFjrb83_2blLq98U-oonOUB3NSU5JaX3-Dw&s"
+                            alt="Cricket Helmet" class="card-img">
+                        <div class="sale-badge">25% OFF</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Cricket Helmet</h3>
+                        <div class="card-footer">
+                            <div class="sale-price">
+                                <span class="sale-price-main">₹974</span>
+                                <span class="original-price">₹1,299</span>
+                            </div>
+                            <div class="card-actions">
+                                <button onclick="editProduct('sale-helmet')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('sale-helmet')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-icon">✅</div>
+            <h3 class="modal-title">Product Added Successfully!</h3>
+            <p class="modal-message">The new product has been added to your store and is now visible to customers.</p>
+            <button onclick="closeModal()" class="btn btn-primary">
+                Continue Managing
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Product</h3>
+                <button onclick="closeEditModal()" class="modal-close">&times;</button>
+            </div>
+            <form id="edit-product-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="edit-product-name" class="form-label">Product Name</label>
+                        <input type="text" id="edit-product-name" name="productName" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-price" class="form-label">Price (₹)</label>
+                        <input type="number" id="edit-product-price" name="productPrice" required class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-product-description" class="form-label">Description</label>
+                    <textarea id="edit-product-description" name="productDescription" rows="3" required class="form-textarea"></textarea>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="edit-product-category" class="form-label">Category</label>
+                        <select id="edit-product-category" name="productCategory" required class="form-select">
+                            <option value="">Select Category</option>
+                            <option value="cricket">Cricket</option>
+                            <option value="football">Football</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-image" class="form-label">Image URL</label>
+                        <input type="url" id="edit-product-image" name="productImage" required class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" onclick="closeEditModal()" class="btn btn-secondary">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Update Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center" style="padding: 2rem 0; color: #6b7280; font-size: 0.875rem;">
+                <p>&copy; 2024 KickNHit. All rights reserved. | Admin Dashboard</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Store for all products
+        let allProducts = {
+            cricket: [],
+            football: []
+        };
+
+        // Track total products count for each category
+        let totalProductsCount = {
+            cricket: 0,
+            football: 0
+        };
+
+        // Load products from API
+        async function loadProducts() {
+            try {
+                const response = await fetch('/api/products');
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Organize products by category
+                    allProducts.cricket = data.products.filter(p => p.category === 'cricket');
+                    allProducts.football = data.products.filter(p => p.category === 'football');
+                    
+                    // Update product counts
+                    totalProductsCount.cricket = allProducts.cricket.length;
+                    totalProductsCount.football = allProducts.football.length;
+                    
+                    // Display current category
+                    const currentCategory = document.getElementById('cricket-products').classList.contains('hidden') ? 'football' : 'cricket';
+                    displayProducts(currentCategory);
+                } else {
+                    console.error('Failed to load products:', data.message);
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        // Display products for a category
+        function displayProducts(category) {
+            const products = allProducts[category];
+            
+            if (products.length === 0) {
+                showEmptyState(category);
+                return;
+            }
+
+            // Decide between grid and carousel view
+            if (products.length <= 3) {
+                showGridView(category, products);
+            } else {
+                showCarouselView(category, products);
+            }
+        }
+
+        function showEmptyState(category) {
+            const grid = document.getElementById(`${category}-grid`);
+            const carousel = document.getElementById(`${category}-carousel`);
+            
+            // Show grid, hide carousel
+            grid.classList.remove('hidden');
+            carousel.classList.add('hidden');
+            
+            grid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-icon">📦</div>
+                    <p class="empty-message">No ${category} products available</p>
+                    <p class="empty-submessage">Add some products to get started!</p>
+                </div>
+            `;
+        }
+
+        function showGridView(category, products) {
+            const grid = document.getElementById(`${category}-grid`);
+            const carousel = document.getElementById(`${category}-carousel`);
+            
+            // Show grid, hide carousel
+            grid.classList.remove('hidden');
+            carousel.classList.add('hidden');
+            
+            grid.innerHTML = products.map(product => createProductCard(product, false)).join('');
+        }
+
+        function showCarouselView(category, products) {
+            const grid = document.getElementById(`${category}-grid`);
+            const carousel = document.getElementById(`${category}-carousel`);
+            const carouselItems = document.getElementById(`${category}-carousel-items`);
+            
+            // Show carousel, hide grid
+            carousel.classList.remove('hidden');
+            grid.classList.add('hidden');
+            
+            carouselItems.innerHTML = products.map(product => createProductCard(product, true)).join('');
+        }
+
+        function showCategory(category) {
+            // Update tab styling
+            document.getElementById('cricket-tab').className = category === 'cricket'
+                ? 'tab-button active'
+                : 'tab-button';
+
+            document.getElementById('football-tab').className = category === 'football'
+                ? 'tab-button active'
+                : 'tab-button';
+
+            // Show/hide product sections
+            if (category === 'cricket') {
+                document.getElementById('cricket-products').classList.remove('hidden');
+                document.getElementById('football-products').classList.add('hidden');
+            } else {
+                document.getElementById('football-products').classList.remove('hidden');
+                document.getElementById('cricket-products').classList.add('hidden');
+            }
+            
+            // Display products for the selected category
+            displayProducts(category);
+        }
+
+        function addProduct() {
+            const form = document.getElementById('add-product-form');
+            const formData = new FormData(form);
+            
+            const productData = {
+                name: formData.get('productName'),
+                price: formData.get('productPrice'),
+                description: formData.get('productDescription'),
+                category: formData.get('productCategory'),
+                image: formData.get('productImage')
+            };
+
+            // Send to backend API
+            fetch('/api/admin/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Reload products from API to get the updated list
+                    loadProducts().then(() => {
+                        // Switch to the category and show success
+                        showCategory(data.product.category);
+                        
+                        // Highlight animation for newly added product
+                        setTimeout(() => {
+                            const newCard = document.querySelector(`[data-product-id="${data.product.id}"]`);
+                            if (newCard) {
+                                newCard.style.transform = 'scale(1.02)';
+                                newCard.style.transition = 'transform 0.3s ease';
+                                setTimeout(() => {
+                                    newCard.style.transform = 'scale(1)';
+                                }, 300);
+                            }
+                        }, 100);
+
+                        // Show success modal and reset form
+                        document.getElementById('success-modal').classList.remove('hidden');
+                        document.getElementById('success-modal').classList.add('flex');
+                        form.reset();
+                    });
+                } else {
+                    showNotification('Error: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error adding product:', error);
+                showNotification('Error adding product. Please try again.', 'error');
+            });
+        }
+
+        function createProductCard(product, isCarousel = false) {
+            // Check if product is newly added (within last 24 hours)
+            const isNew = product.createdAt && new Date(product.createdAt) > new Date(Date.now() - 24*60*60*1000);
+            
+            const cardClass = isCarousel 
+                ? 'card carousel-card' 
+                : 'card';
+            
+            const newTag = isNew ? 
+                `<div class="featured-badge" style="background: #059669; color: #fff;">NEW</div>` : '';
+
+            return `
+                <div class="${cardClass}" data-product-id="${product.id}">
+                    <div style="position: relative;">
+                        <img src="${product.image}" 
+                             alt="${product.name}" 
+                             class="card-img"
+                             onerror="this.src='https://via.placeholder.com/300x200?text=Image+Not+Found'">
+                        ${newTag}
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">${product.name}</h3>
+                        <p class="card-description">${product.description}</p>
+                        <div class="card-footer">
+                            <span class="card-price">₹${product.price}</span>
+                            <div class="card-actions">
+                                <button onclick="editProduct('${product.id}')" class="btn btn-secondary btn-sm">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('${product.id}')" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function scrollCarousel(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            const cardWidth = 280 + 24; // card width + gap
+            const scrollAmount = cardWidth * direction;
+            carousel.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        function editProduct(productId) {
+            // Fetch product details first
+            fetch(`/api/admin/products/${productId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const product = data.product;
+                        
+                        // Fill the edit form with product data
+                        document.getElementById('edit-product-name').value = product.name;
+                        document.getElementById('edit-product-price').value = product.price;
+                        document.getElementById('edit-product-description').value = product.description;
+                        document.getElementById('edit-product-category').value = product.category;
+                        document.getElementById('edit-product-image').value = product.image;
+                        
+                        // Store the product ID for the update
+                        document.getElementById('edit-product-form').dataset.productId = productId;
+                        
+                        // Show the edit modal
+                        document.getElementById('edit-modal').classList.remove('hidden');
+                        document.getElementById('edit-modal').classList.add('flex');
+                    } else {
+                        showNotification('Error loading product details: ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching product:', error);
+                    showNotification('Error loading product details. Please try again.', 'error');
+                });
+        }
+
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                // Call backend API to delete
+                fetch(`/api/admin/products/${productId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Reload products from API to get the updated list
+                        loadProducts().then(() => {
+                            // Show the current category after reload
+                            const currentCategory = document.getElementById('cricket-products').classList.contains('hidden') ? 'football' : 'cricket';
+                            showCategory(currentCategory);
+                        });
+                        
+                        showNotification('Product deleted successfully and removed from user dashboard!');
+                    } else {
+                        showNotification('Error: ' + data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting product:', error);
+                    showNotification('Error deleting product. Please try again.', 'error');
+                });
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('success-modal').classList.remove('flex');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+            document.getElementById('edit-modal').classList.remove('flex');
+        }
+
+        function updateProduct() {
+            const form = document.getElementById('edit-product-form');
+            const formData = new FormData(form);
+            const productId = form.dataset.productId;
+            
+            const productData = {
+                name: formData.get('productName'),
+                price: formData.get('productPrice'),
+                description: formData.get('productDescription'),
+                category: formData.get('productCategory'),
+                image: formData.get('productImage')
+            };
+
+            // Send update request to backend API
+            fetch(`/api/admin/products/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Close edit modal
+                    closeEditModal();
+                    
+                    // Reload products from API to get the updated list
+                    loadProducts().then(() => {
+                        // Switch to the category and show success
+                        showCategory(data.product.category);
+                        
+                        // Highlight animation for updated product
+                        setTimeout(() => {
+                            const updatedCard = document.querySelector(`[data-product-id="${productId}"]`);
+                            if (updatedCard) {
+                                updatedCard.style.transform = 'scale(1.02)';
+                                updatedCard.style.transition = 'transform 0.3s ease';
+                                updatedCard.style.border = '2px solid #10b981';
+                                setTimeout(() => {
+                                    updatedCard.style.transform = 'scale(1)';
+                                    updatedCard.style.border = '';
+                                }, 300);
+                            }
+                        }, 100);
+
+                        showNotification('Product updated successfully!', 'success');
+                    });
+                } else {
+                    showNotification('Error: ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error updating product:', error);
+                showNotification('Error updating product. Please try again.', 'error');
+            });
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // Handle form submission
+        document.getElementById('add-product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            addProduct();
+        });
+
+        // Handle edit form submission
+        document.getElementById('edit-product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateProduct();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', async function () {
+            await loadProducts(); // Load products from API
+            showCategory('cricket'); // Show cricket products by default
+        });
+    </script>
+</body>

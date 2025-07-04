@@ -24,9 +24,11 @@ app.use(session({
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
+const apiRoutes = require('./routes/apiRoutes');
 
 // Use routes
 app.use('/', authRoutes);
+app.use('/api', apiRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
