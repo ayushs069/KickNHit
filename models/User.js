@@ -1,67 +1,69 @@
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// In-memory storage for Day 1 (replace with database later)
-let users = [
-    {
-        id: 1,
-        firstName: 'Demo',
-        lastName: 'User',
-        email: 'demo@example.com',
-        password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        role: 'user'
+const userSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6
+    },
+    role: {
+        type: String,
+        default: 'user',
+        immutable: true
+    },
+    phone: {
+        type: String,
+        trim: true
+    },
+    address: {
+        street: String,
+        city: String,
+        state: String,
+        zipCode: String,
+        country: String
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
-];
+}, {
+    timestamps: true
+});
 
-class User {
-    constructor(firstName, lastName, email, password, role = 'user') {
-        this.id = users.length + 1;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+// Hash password before saving
+userSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) return next();
+    
+    try {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        next();
+    } catch (error) {
+        next(error);
     }
+});
 
-    // Save user to memory
-    save() {
-        users.push(this);
-        return this;
-    }
+// Compare password method
+userSchema.methods.comparePassword = async function(candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
 
-    // Find user by email
-    static findByEmail(email) {
-        return users.find(user => user.email === email);
-    }
-
-    // Find user by name (firstName + lastName)
-    static findByName(firstName, lastName) {
-        return users.find(user => user.firstName === firstName && user.lastName === lastName);
-    }
-
-    // Find user by ID
-    static findById(id) {
-        return users.find(user => user.id === parseInt(id));
-    }
-
-    // Get all users
-    static getAll() {
-        return users;
-    }
-
-    // Validate password
-    static async validatePassword(plainPassword, hashedPassword) {
-        return await bcrypt.compare(plainPassword, hashedPassword);
-    }
-
-    // Hash password
-    static async hashPassword(password) {
-        return await bcrypt.hash(password, 10);
-    }
-
-    // Check if email already exists
-    static emailExists(email) {
-        return users.some(user => user.email === email);
-    }
-}
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

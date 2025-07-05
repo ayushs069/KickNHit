@@ -1,78 +1,58 @@
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// In-memory storage for Day 2 (replace with database later)
-let admins = [
-    {
-        id: 1,
-        firstName: 'Super',
-        lastName: 'Admin',
-        email: 'admin@kicknhit.com',
-        password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        role: 'admin',
-        permissions: ['manage_users', 'manage_products', 'manage_orders', 'view_analytics']
+const adminSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true,
+        trim: true
     },
-    {
-        id: 2,
-        firstName: 'Product',
-        lastName: 'Manager',
-        email: 'manager@kicknhit.com',
-        password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        role: 'admin',
-        permissions: ['manage_products']
+    lastName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 6
+    },
+    role: {
+        type: String,
+        default: 'admin',
+        immutable: true
+    },
+    permissions: {
+        type: [String],
+        default: ['manage_users', 'manage_products', 'manage_orders', 'view_analytics']
     }
-];
+}, {
+    timestamps: true
+});
 
-class Admin {
-    constructor(firstName, lastName, email, password, role = 'admin', permissions = ['manage_products']) {
-        this.id = admins.length + 1;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.permissions = permissions;
+// Hash password before saving
+adminSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) return next();
+    
+    try {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        next();
+    } catch (error) {
+        next(error);
     }
+});
 
-    // Save admin to memory
-    save() {
-        admins.push(this);
-        return this;
-    }
+// Compare password method
+adminSchema.methods.comparePassword = async function(candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
 
-    // Find admin by email
-    static findByEmail(email) {
-        return admins.find(admin => admin.email === email);
-    }
-
-    // Find admin by ID
-    static findById(id) {
-        return admins.find(admin => admin.id === parseInt(id));
-    }
-
-    // Get all admins
-    static getAll() {
-        return admins;
-    }
-
-    // Validate password
-    static async validatePassword(plainPassword, hashedPassword) {
-        return await bcrypt.compare(plainPassword, hashedPassword);
-    }
-
-    // Hash password
-    static async hashPassword(password) {
-        return await bcrypt.hash(password, 10);
-    }
-
-    // Check if email already exists
-    static emailExists(email) {
-        return admins.some(admin => admin.email === email);
-    }
-
-    // Check if admin has permission
-    static hasPermission(admin, permission) {
-        return admin.permissions.includes(permission);
-    }
-}
-
-module.exports = Admin;
+module.exports = mongoose.model('Admin', adminSchema);

@@ -33,18 +33,27 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT88t-7hjRC1HmtLkJQOUua8w11fNxYPnsLAg&s"
-                alt="Admin Dashboard"
-                class="hero-image"
-            />
-            <h1 class="hero-title">Admin Dashboard</h1>
-            <p class="hero-subtitle">
-                Manage your sports equipment inventory and add new products to the store.
-            </p>
-            <p class="hero-description">
-                View all products that customers see and add new items to expand your catalog.
-            </p>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Admin <span class="hero-highlight">Dashboard</span></h1>
+                    <p class="hero-subtitle">
+                        Manage your sports equipment inventory and add new products to the store.
+                    </p>
+                    <p class="hero-description">
+                        View all products that customers see and add new items to expand your catalog.
+                    </p>
+                </div>
+                
+                <div class="hero-image-section">
+                    <div class="hero-carousel-container">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/512/9619/9619263.png"
+                            alt="Admin Dashboard"
+                            class="admin-hero-image active"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -215,12 +224,9 @@
                         <div class="card-footer">
                             <span class="card-price">₹4,999</span>
                             <div class="card-actions">
-                                <button onclick="editProduct('featured-bat')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('featured-bat')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -239,12 +245,9 @@
                         <div class="card-footer">
                             <span class="card-price">₹5,999</span>
                             <div class="card-actions">
-                                <button onclick="editProduct('featured-boots')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('featured-boots')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -263,12 +266,9 @@
                         <div class="card-footer">
                             <span class="card-price">₹8,999</span>
                             <div class="card-actions">
-                                <button onclick="editProduct('featured-kit')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('featured-kit')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -299,12 +299,9 @@
                                 <span class="original-price">₹1,999</span>
                             </div>
                             <div class="card-actions">
-                                <button onclick="editProduct('sale-pads')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('sale-pads')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -325,12 +322,9 @@
                                 <span class="original-price">₹1,999</span>
                             </div>
                             <div class="card-actions">
-                                <button onclick="editProduct('sale-football')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('sale-football')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -351,12 +345,9 @@
                                 <span class="original-price">₹899</span>
                             </div>
                             <div class="card-actions">
-                                <button onclick="editProduct('sale-gloves')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('sale-gloves')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -377,12 +368,9 @@
                                 <span class="original-price">₹1,299</span>
                             </div>
                             <div class="card-actions">
-                                <button onclick="editProduct('sale-helmet')" class="btn btn-secondary btn-sm">
-                                    Edit
-                                </button>
-                                <button onclick="deleteProduct('sale-helmet')" class="btn btn-danger btn-sm">
-                                    Delete
-                                </button>
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -613,7 +601,7 @@
                         
                         // Highlight animation for newly added product
                         setTimeout(() => {
-                            const newCard = document.querySelector(`[data-product-id="${data.product.id}"]`);
+                            const newCard = document.querySelector(`[data-product-id="${data.product._id}"]`);
                             if (newCard) {
                                 newCard.style.transform = 'scale(1.02)';
                                 newCard.style.transition = 'transform 0.3s ease';
@@ -650,7 +638,7 @@
                 `<div class="featured-badge" style="background: #059669; color: #fff;">NEW</div>` : '';
 
             return `
-                <div class="${cardClass}" data-product-id="${product.id}">
+                <div class="${cardClass}" data-product-id="${product._id}">
                     <div style="position: relative;">
                         <img src="${product.image}" 
                              alt="${product.name}" 
@@ -664,10 +652,10 @@
                         <div class="card-footer">
                             <span class="card-price">₹${product.price}</span>
                             <div class="card-actions">
-                                <button onclick="editProduct('${product.id}')" class="btn btn-secondary btn-sm">
+                                <button onclick="editProduct('${product._id}')" class="btn btn-secondary btn-sm">
                                     Edit
                                 </button>
-                                <button onclick="deleteProduct('${product.id}')" class="btn btn-danger btn-sm">
+                                <button onclick="deleteProduct('${product._id}')" class="btn btn-danger btn-sm">
                                     Delete
                                 </button>
                             </div>
