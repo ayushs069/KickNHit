@@ -142,6 +142,13 @@ KickNHit/
 - Enhanced landing page with dynamic content
 - User authentication and session management
 
+### Day 4 ✅
+- Completed leftover work in Admin Dashboard
+- Enhanced cart functionality
+- Implemented Cricket & Football items list
+- Added product carousel on landing page
+
+
 ## 🚀 Quick Start Guide
 
 1. Run `npm install`
