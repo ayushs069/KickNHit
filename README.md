@@ -148,6 +148,12 @@ KickNHit/
 - Implemented Cricket & Football items list
 - Added product carousel on landing page
 
+### Day 5 ✅
+- Improved addition of products in admin panel
+- Add to cart functionalities checked
+- Newly added products stored in mongoDB
+- Improved layout
+
 
 ## 🚀 Quick Start Guide
 
@@ -164,7 +170,6 @@ KickNHit/
 - Order management system
 - Product reviews and ratings
 - Advanced search and filtering
-- Mobile responsiveness improvements
 - Email notifications
 
 ---
