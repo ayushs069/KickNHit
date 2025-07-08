@@ -86,7 +86,7 @@ async function insertDemoData() {
   } catch (error) {
     console.error('Error inserting demo data:', error);
   } finally {
-    // Close the connection
+    // Close the connection after insertion
     await mongoose.connection.close();
     console.log('\nDatabase connection closed');
   }

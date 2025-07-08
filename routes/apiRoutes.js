@@ -30,7 +30,7 @@ const requireAdminAuth = (req, res, next) => {
 router.get('/products', productController.getAllProducts);
 router.get('/products/category/:category', productController.getProductsByCategory);
 
-// Admin API routes
+// Admin API routes (for admin dashboard)
 router.get('/admin/products/:id', requireAdminAuth, productController.getProductById);
 router.post('/admin/products', requireAdminAuth, productController.addProduct);
 router.put('/admin/products/:id', requireAdminAuth, productController.editProduct);

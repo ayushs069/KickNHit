@@ -67,7 +67,6 @@ A full-stack e-commerce web application for sports equipment built with Node.js,
 ```
 KickNHit/
 ├── controllers/
-│   ├── authController.js       # Authentication logic
 │   ├── adminController.js      # Admin-specific controllers
 │   └── productController.js    # Product management
 ├── models/
@@ -133,7 +132,7 @@ KickNHit/
 - Newly added products stored in mongoDB
 - Improved layout
 
-### Day 5 ✅
+### Day 6 ✅
 - Added dynamic product listing for cricket and football gear using MongoDB and Express.js.
 - Integrated user authentication using sessions and login/signup form.
 - Only logged-in users can add items to cart or checkout.

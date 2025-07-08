@@ -38,7 +38,7 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Index for better query performance
+// Index for better query performance in product searches
 productSchema.index({ category: 1, isActive: 1 });
 
 module.exports = mongoose.model('Product', productSchema);

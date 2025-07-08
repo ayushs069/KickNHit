@@ -4,7 +4,7 @@ const Admin = require('./models/Admin');
 require('dotenv').config();
 
 const demoProducts = [
-    // Cricket Products
+    // Cricket Products 
     {
         name: "Professional Cricket Bat",
         description: "Premium willow cricket bat for professionals",
@@ -59,7 +59,7 @@ async function addDemoProducts() {
         });
         console.log('Connected to MongoDB');
 
-        // Find an admin user to associate products with
+        // Find an admin user to associate products with if needed
         const admin = await Admin.findOne();
         if (!admin) {
             console.error('No admin user found. Please create an admin user first.');

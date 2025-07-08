@@ -134,7 +134,7 @@ router.post('/user/signup', async (req, res) => {
 
         await newUser.save();
 
-        // Redirect to login page instead of auto-login
+        // Redirect to login page instead of auto-login after signup
         res.redirect('/user/login?signup=success');
 
     } catch (error) {
