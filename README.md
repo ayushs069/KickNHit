@@ -62,27 +62,6 @@ A full-stack e-commerce web application for sports equipment built with Node.js,
 - Password: `user123`
 - Access: User dashboard with shopping features
 
-## ✨ Features
-
-### Day 1 - Basic Setup
-- Landing page with hero section
-- User login and signup functionality
-- Custom CSS styling
-- Basic MVC structure
-
-### Day 2 - Admin Features
-- Admin login and authentication
-- Admin dashboard with product management
-- Product CRUD operations (Add/Edit/Delete)
-- API endpoints for product management
-
-### Day 3 - User Features & MongoDB Integration
-- User dashboard with product browsing
-- Shopping cart functionality
-- MongoDB integration for data persistence
-- Enhanced landing page with product showcase
-- User authentication and session management
-
 ## 📁 Project Structure
 
 ```
@@ -153,6 +132,11 @@ KickNHit/
 - Add to cart functionalities checked
 - Newly added products stored in mongoDB
 - Improved layout
+
+### Day 5 ✅
+- Added dynamic product listing for cricket and football gear using MongoDB and Express.js.
+- Integrated user authentication using sessions and login/signup form.
+- Only logged-in users can add items to cart or checkout.
 
 
 ## 🚀 Quick Start Guide
