@@ -137,6 +137,13 @@ KickNHit/
 - Integrated user authentication using sessions and login/signup form.
 - Only logged-in users can add items to cart or checkout.
 
+### Day 7 ✅
+- Improved overall UI consistency and responsiveness across all pages (landing, login, dashboards)
+- Updated navbar and footer with better layout,
+- links, and dynamic rendering based on user/admin login status.
+
+### Day 8 ✅
+
 
 ## 🚀 Quick Start Guide
 
