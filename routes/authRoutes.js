@@ -9,12 +9,12 @@ router.get('/', (req, res) => {
     res.render('landing', { title: 'KickNHit - Welcome' });
 });
 
-// Admin login page
+// Admin login page render
 router.get('/admin/login', (req, res) => {
     res.render('admin-login', { title: 'Admin Login', error: null });
 });
 
-// User login page
+// User login page render
 router.get('/user/login', (req, res) => {
     let successMessage = null;
     if (req.query.signup === 'success') {

@@ -143,7 +143,8 @@ KickNHit/
 - links, and dynamic rendering based on user/admin login status.
 
 ### Day 8 ✅
-
+- Added error handling for invalid routes and database connection issues with custom error pages.
+- Optimized image sizes and assets for faster page loading.
 
 ## 🚀 Quick Start Guide
 
