@@ -6,16 +6,17 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="auth-page">
-    <div class="auth-container">
-        <!-- Header -->
-        <header class="auth-header">
-            <a href="/" class="auth-logo">
-                <h1 class="nav-brand">KickNHit</h1>
-            </a>
-            <h2 class="auth-title">Join KickNHit</h2>
-            <p class="auth-subtitle">Create your account and start shopping</p>
-        </header>
+<body>
+    <div class="auth-page signup-page">
+        <div class="auth-container">
+            <!-- Header -->
+            <header class="auth-header">
+                <div class="auth-logo">
+                    <a href="/" class="nav-brand">KickNHit</a>
+                </div>
+                <h1 class="auth-title">Join KickNHit</h1>
+                <p class="auth-subtitle">Create your account and start shopping</p>
+            </header>
 
         <!-- Signup Form -->
         <main class="auth-form">
@@ -95,9 +96,9 @@
             </form>
             
             <div class="auth-footer">
-                <p style="margin-bottom: 1rem; color: #6b7280; font-size: 0.875rem;">
+                <p style="margin-bottom: 0.75rem; color: #6b7280; font-size: 0.875rem;">
                     Already have an account? 
-                    <a href="/user/login" class="auth-link">
+                    <a href="/login" class="auth-link">
                         Sign in here
                     </a>
                 </p>
@@ -108,19 +109,19 @@
         </main>
 
         <!-- Benefits Section -->
-        <div style="background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
-            <h4 style="font-size: 0.875rem; font-weight: 500; color: #111827; margin-bottom: 0.75rem;">Why join KickNHit?</h4>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.75rem; color: #6b7280;">
-                <div style="display: flex; align-items: center;">
-                    <span style="color: #059669; margin-right: 0.5rem;">✓</span>
+        <div class="auth-benefits">
+            <h4>Why join KickNHit?</h4>
+            <div class="auth-benefits-list">
+                <div class="auth-benefit-item">
+                    <span class="auth-benefit-icon">✓</span>
                     <span>Exclusive access to premium sports equipment</span>
                 </div>
-                <div style="display: flex; align-items: center;">
-                    <span style="color: #059669; margin-right: 0.5rem;">✓</span>
+                <div class="auth-benefit-item">
+                    <span class="auth-benefit-icon">✓</span>
                     <span>Free shipping on orders above ₹999</span>
                 </div>
-                <div style="display: flex; align-items: center;">
-                    <span style="color: #059669; margin-right: 0.5rem;">✓</span>
+                <div class="auth-benefit-item">
+                    <span class="auth-benefit-icon">✓</span>
                     <span>Early access to new arrivals and sales</span>
                 </div>
             </div>

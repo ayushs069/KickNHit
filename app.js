@@ -40,9 +40,23 @@ app.use(session({
         mongoUrl: process.env.MONGODB_URI
     }),
     cookie: {
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        secure: false, // Set to true only in production with HTTPS
+        httpOnly: true, // Prevent XSS attacks
+        sameSite: 'lax' // Prevent CSRF while allowing normal navigation
     }
 }));
+
+// Session debugging middleware (remove in production)
+app.use((req, res, next) => {
+    console.log('Session info:', {
+        sessionID: req.sessionID,
+        hasUser: !!req.session.user,
+        userRole: req.session.user ? req.session.user.role : null,
+        url: req.url
+    });
+    next();
+});
 
 // Routes for authentication and API
 app.use('/', authRoutes);

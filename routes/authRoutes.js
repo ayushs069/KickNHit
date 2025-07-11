@@ -6,22 +6,25 @@ const adminController = require('../controllers/admin/adminController');
 
 // Landing page
 router.get('/', (req, res) => {
+    // If user is already logged in, redirect to their dashboard
+    if (req.session.user) {
+        if (req.session.user.role === 'admin') {
+            return res.redirect('/admin/dashboard');
+        } else {
+            return res.redirect('/user/dashboard');
+        }
+    }
     res.render('landing', { title: 'KickNHit - Welcome' });
 });
 
-// Admin login page render
-router.get('/admin/login', (req, res) => {
-    res.render('admin-login', { title: 'Admin Login', error: null });
-});
-
-// User login page render
-router.get('/user/login', (req, res) => {
+// Unified login page render
+router.get('/login', (req, res) => {
     let successMessage = null;
     if (req.query.signup === 'success') {
         successMessage = 'Account created successfully! Please sign in with your credentials.';
     }
-    res.render('user-login', { 
-        title: 'User Login', 
+    res.render('unified-login', { 
+        title: 'Login', 
         error: null,
         success: successMessage
     });
@@ -32,81 +35,73 @@ router.get('/user/signup', (req, res) => {
     res.render('user-signup', { title: 'User Signup', error: null });
 });
 
-// Admin login process
-router.post('/admin/login', async (req, res) => {
+// Unified login process
+router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
+        const emailLower = email.toLowerCase();
 
-        const admin = await Admin.findOne({ email: email.toLowerCase() });
-        if (!admin) {
-            return res.render('admin-login', {
-                title: 'Admin Login',
-                error: 'Invalid admin credentials'
-            });
+        // First, try to find in User collection
+        let user = await User.findOne({ email: emailLower });
+        let isAdmin = false;
+
+        // If not found in User collection, try Admin collection
+        if (!user) {
+            user = await Admin.findOne({ email: emailLower });
+            isAdmin = true;
         }
 
-        const isMatch = await admin.comparePassword(password);
-        if (!isMatch) {
-            return res.render('admin-login', {
-                title: 'Admin Login',
-                error: 'Invalid admin credentials'
-            });
-        }
-
-        req.session.user = {
-            _id: admin._id,
-            firstName: admin.firstName,
-            role: admin.role,
-            type: 'admin'
-        };
-
-        res.redirect('/admin/dashboard');
-
-    } catch (error) {
-        console.error('Admin login error:', error);
-        res.render('admin-login', {
-            title: 'Admin Login',
-            error: 'Login failed'
-        });
-    }
-});
-
-// User login process
-router.post('/user/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        const user = await User.findOne({ email: email.toLowerCase() });
-        if (!user || user.role !== 'user') {
-            return res.render('user-login', {
-                title: 'User Login',
-                error: 'Invalid user credentials'
+        if (!user) {
+            return res.render('unified-login', {
+                title: 'Login',
+                error: 'Invalid email or password'
             });
         }
 
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
-            return res.render('user-login', {
-                title: 'User Login',
-                error: 'Invalid user credentials'
+            return res.render('unified-login', {
+                title: 'Login',
+                error: 'Invalid email or password'
             });
         }
 
+        // Set session based on user role
         req.session.user = {
             _id: user._id,
             firstName: user.firstName,
-            role: user.role
+            lastName: user.lastName,
+            email: user.email,
+            role: user.role,
+            // Include admin permissions if user is admin
+            ...(user.role === 'admin' && { permissions: user.permissions })
         };
 
-        res.redirect('/user/dashboard');
+        // Redirect based on role
+        if (user.role === 'admin') {
+            res.redirect('/admin/dashboard');
+        } else {
+            res.redirect('/user/dashboard');
+        }
 
     } catch (error) {
-        console.error('User login error:', error);
-        res.render('user-login', {
-            title: 'User Login',
-            error: 'Login failed'
+        console.error('Login error:', error);
+        res.render('unified-login', {
+            title: 'Login',
+            error: 'Login failed. Please try again.'
         });
     }
+});
+
+// Legacy POST routes for backward compatibility (redirect to unified login)
+router.post('/admin/login', (req, res) => {
+    // Redirect to unified login endpoint
+    res.redirect(307, '/login'); // 307 preserves POST method and body
+});
+
+router.post('/user/login', (req, res) => {
+    // Redirect to unified login endpoint
+    res.redirect(307, '/login'); // 307 preserves POST method and body
 });
 
 // User signup process
@@ -134,8 +129,8 @@ router.post('/user/signup', async (req, res) => {
 
         await newUser.save();
 
-        // Redirect to login page instead of auto-login after signup
-        res.redirect('/user/login?signup=success');
+        // Redirect to unified login page instead of auto-login after signup
+        res.redirect('/login?signup=success');
 
     } catch (error) {
         console.error('User signup error:', error);
@@ -152,7 +147,7 @@ router.get('/admin/dashboard', adminController.requireAdmin, adminController.get
 // User dashboard
 router.get('/user/dashboard', (req, res) => {
     if (!req.session.user || req.session.user.role !== 'user') {
-        return res.redirect('/user/login');
+        return res.redirect('/login');
     }
     res.render('user-dashboard', { 
         title: 'User Dashboard',

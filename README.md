@@ -78,9 +78,8 @@ KickNHit/
 │   └── authRoutes.js          # Authentication routes
 ├── views/
 │   ├── landing.hbs            # Landing page
-│   ├── admin-login.hbs        # Admin login
+│   ├── unified-login.hbs      # Unified login for users and admins
 │   ├── admin-dashboard.hbs    # Admin dashboard
-│   ├── user-login.hbs         # User login
 │   ├── user-signup.hbs        # User signup
 │   └── user-dashboard.hbs     # User dashboard
 ├── public/
@@ -145,6 +144,11 @@ KickNHit/
 ### Day 8 ✅
 - Added error handling for invalid routes and database connection issues with custom error pages.
 - Optimized image sizes and assets for faster page loading.
+
+### Day 9 ✅
+- Added a search bar in the user dashboard to search for products; clicking a product redirects the user to its details in the dashboard.
+- Implemented a unified login for both Users and Admins, removing the need for separate login pages.
+- Enhanced the styling of the SignUp and Login pages for a better user interface.
 
 ## 🚀 Quick Start Guide
 

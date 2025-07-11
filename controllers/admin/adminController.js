@@ -5,12 +5,12 @@ const User = require('../../models/User');
 // Middleware to check if user is admin
 const requireAdmin = (req, res, next) => {
     if (!req.session.user || req.session.user.role !== 'admin') {
-        return res.redirect('/admin/login');
+        return res.redirect('/login');
     }
     next();
 };
 
-// Get admin dashboard with stats
+// Get admin dashboard with stats and recent products
 const getDashboard = async (req, res) => {
     try {
         // Get dashboard statistics
@@ -55,7 +55,7 @@ const getProfile = async (req, res) => {
     try {
         const admin = await Admin.findById(req.session.user._id);
         if (!admin) {
-            return res.redirect('/admin/login');
+            return res.redirect('/login');
         }
 
         res.render('admin-profile', {

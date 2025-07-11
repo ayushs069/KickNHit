@@ -13,21 +13,36 @@
     <!-- Navigation -->
     <header class="header">
         <nav class="nav">
-            <a href="/" class="nav-brand">KickNHit</a>
+            <a href="/user/dashboard" class="nav-brand">KickNHit</a>
             
-            <div class="nav-links">
-                <a href="#products" class="nav-link">📦 Products</a>
-                <a href="#cart" class="nav-link">
-                    🛒 Cart
-                    <span id="cart-count" class="cart-count">0</span>
-                </a>
+            <!-- Center navigation links -->
+            <div class="nav-center">
+                <div class="nav-links">
+                    <a href="#products" class="nav-link">📦 PRODUCTS</a>
+                    <a href="#cart" class="nav-link">
+                        🛒 CART
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
             </div>
 
             <div class="nav-user">
-                <span class="nav-user-info">Welcome, <strong>{{user.firstName}}</strong></span>
+                <!-- Search Bar -->
+                <div class="nav-search">
+                    <input id="product-search" type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+                    <span class="search-icon">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
+                    <div id="search-suggestions" class="search-suggestions"></div>
+                </div>
+                
+                <!-- Welcome Message -->
+                <span class="nav-user-info">WELCOME : <strong>{{user.firstName}}</strong></span>
+                
+                <!-- Logout Button -->
                 <form action="/logout" method="POST" style="display: inline;">
                     <button type="submit" class="btn btn-outline btn-sm">
-                        Logout
+                        LOGOUT
                     </button>
                 </form>
             </div>
@@ -40,14 +55,14 @@
             <!-- Text Content -->
             <div class="user-hero-text">
                 <h1 class="user-hero-title">
-                    Welcome to Your Sports Store,
+                    Welcome To Your Sports Store -
                     <span class="user-hero-highlight">{{user.firstName}}!</span>
                 </h1>
                 <p class="user-hero-subtitle">
                     Discover premium cricket and football equipment with exclusive deals.
                 </p>
                 <p class="user-hero-description">
-                    Simply click <span class="font-semibold">"Add to Cart"</span> on any item you like.<br>
+                    Simply click <span class="font-semibold"><b>" Add To Cart "</b></span> on any item you like.<br>
                     Track your selections in the cart and checkout when ready!
                 </p>
             </div>
@@ -56,7 +71,7 @@
             <div class="user-hero-image">
                 <div class="hero-carousel">
                     <img id="img1"
-                        src="https://media.istockphoto.com/id/520703373/photo/man-looking-to-buy-jacket-and-outdoor-equipment.jpg?s=612x612&w=0&k=20&c=foS1JrzI9m0M03GjRWSmMU_PqKcPCRjZRm3NQPcPMtA="
+                        src="https://www.primeparc.in/assets/img/slider/1.jpg"
                         alt="Sports Equipment Store"
                         style="opacity: 1; z-index: 10;"
                     />
@@ -71,9 +86,9 @@
     </section>    <script>
         // Hero carousel logic
         const images = [
-            "https://media.istockphoto.com/id/520703373/photo/man-looking-to-buy-jacket-and-outdoor-equipment.jpg?s=612x612&w=0&k=20&c=foS1JrzI9m0M03GjRWSmMU_PqKcPCRjZRm3NQPcPMtA=",
-            "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/sites/2/2016/06/SportShoppingCrownCricketerFeatured-i.jpg",
-            "https://st.depositphotos.com/1480128/2099/i/950/depositphotos_20997099-stock-photo-kids-playing-football.jpg"
+            "https://www.primeparc.in/assets/img/slider/1.jpg",
+            "https://thumbs.dreamstime.com/b/rainy-night-cricket-scene-wet-cricket-field-captures-essence-rainy-night-game-droplets-glisten-creating-dramatic-366031417.jpg",
+            "https://breakingglobe.com/wp-content/uploads/2024/08/DALL%C2%B7E-2024-08-16-02.23.54-A-dynamic-and-vibrant-image-depicting-the-excitement-of-both-cricket-and-football.-On-the-left-show-a-cricket-batsman-in-mid-swing-with-a-bowler-del.webp"
         ];
 
         let current = 0;
@@ -205,14 +220,15 @@
     <section id="featured" class="section">
         <div class="container">
             <div class="text-center mb-4">
+                <h2 class="section-title">Featured Products</h2>
                 <p class="section-description">Hand-picked favorites loved by professionals</p>
             </div>
 
             <div class="product-grid">
                 <!-- Featured Cricket Bat -->
-                <div class="card featured-card">
+                <div class="card featured-card" data-product-id="featured-bat">
                     <div class="card-img-container" style="position: relative;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVi_V4PxSEsCrR_qmOF9MtDzxJnKpBI3-ikg&s"
+                        <img src="https://admin.thecricketer.com/weblab/sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/kookaburra_nickel_4.1.jpg"
                             alt="Professional Cricket Bat" class="card-img">
                         <div class="featured-badge">FEATURED</div>
                     </div>
@@ -229,9 +245,9 @@
                 </div>
 
                 <!-- Featured Football Boots -->
-                <div class="card featured-card">
+                <div class="card featured-card" data-product-id="featured-boots">
                     <div class="card-img-container" style="position: relative;">
-                        <img src="https://i.ebayimg.com/images/g/wqwAAOSwU0JjFook/s-l1200.webp"
+                        <img src="https://preview.free3d.com/img/2010/06/1871863703398254318/o29lvvye.jpg"
                             alt="Professional Football Boots" class="card-img">
                         <div class="featured-badge">FEATURED</div>
                     </div>
@@ -248,9 +264,9 @@
                 </div>
 
                 <!-- Featured Kit -->
-                <div class="card featured-card">
+                <div class="card featured-card" data-product-id="featured-kit">
                     <div class="card-img-container" style="position: relative;">
-                        <img src="https://cdnmedia.dsc-cricket.com/media/catalog/product/cache/5b0ea239e50527b43e3253a7f103e237/d/s/dsc-2020-cricket-kit_2.webp"
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2024/6/424095483/DF/VP/RY/163043379/whatsapp-image-2024-06-01-at-3-26-20-pm-500x500.jpeg"
                             alt="Complete Cricket Kit" class="card-img">
                         <div class="featured-badge">FEATURED</div>
                     </div>
@@ -279,7 +295,7 @@
 
             <div class="flash-sale-grid">
                 <!-- Sale Item 1 -->
-                <div class="card sale-card">
+                <div class="card sale-card" data-product-id="sale-pads">
                     <div class="card-img-container" style="position: relative;">
                         <img src="https://a2cricket.com/cdn/shop/files/A2Cricket-CricketBattingPads_7_1400x.jpg?v=1690984808"
                             alt="Cricket Pads" class="card-img">
@@ -300,7 +316,7 @@
                 </div>
 
                 <!-- Sale Item 2 -->
-                <div class="card sale-card">
+                <div class="card sale-card" data-product-id="sale-football">
                     <div class="card-img-container" style="position: relative;">
                         <img src="https://contents.mediadecathlon.com/p2571328/bcd3c25846279cde8d74b9996aef2566/p2571328.jpg?format=auto&quality=70&f=2520x0"
                             alt="Football" class="card-img">
@@ -321,7 +337,7 @@
                 </div>
 
                 <!-- Sale Item 3 -->
-                <div class="card sale-card">
+                <div class="card sale-card" data-product-id="sale-gloves">
                     <div class="card-img-container" style="position: relative;">
                         <img src="https://sportsgoodsmarket.com/wp-content/uploads/2020/12/PRO-5-scaled.jpg"
                             alt="Cricket Gloves" class="card-img">
@@ -342,7 +358,7 @@
                 </div>
 
                 <!-- Sale Item 4 -->
-                <div class="card sale-card">
+                <div class="card sale-card" data-product-id="sale-helmet">
                     <div class="card-img-container" style="position: relative;">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFFjrb83_2blLq98U-oonOUB3NSU5JaX3-Dw&s"
                             alt="Cricket Helmet" class="card-img">
@@ -419,6 +435,76 @@
     <script>
         let cart = [];
         let allProducts = { cricket: [], football: [] };
+        let allProductsFlat = [];
+        
+        // Define hardcoded products (Featured and Sale items)
+        const hardcodedProducts = [
+            // Featured Products
+            {
+                _id: 'featured-bat',
+                name: 'Professional Cricket Bat Pro',
+                description: 'Premium English willow, used by international players',
+                price: 4999,
+                category: 'cricket',
+                image: 'https://admin.thecricketer.com/weblab/sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/kookaburra_nickel_4.1.jpg',
+                section: 'featured'
+            },
+            {
+                _id: 'featured-boots',
+                name: 'Elite Football Boots',
+                description: 'Professional grade boots with advanced grip technology',
+                price: 5999,
+                category: 'football',
+                image: 'https://preview.free3d.com/img/2010/06/1871863703398254318/o29lvvye.jpg',
+                section: 'featured'
+            },
+            {
+                _id: 'featured-kit',
+                name: 'Complete Cricket Kit',
+                description: 'Everything you need: bat, pads, gloves, helmet',
+                price: 8999,
+                category: 'cricket',
+                image: 'https://5.imimg.com/data5/SELLER/Default/2024/6/424095483/DF/VP/RY/163043379/whatsapp-image-2024-06-01-at-3-26-20-pm-500x500.jpeg',
+                section: 'featured'
+            },
+            // Sale Products
+            {
+                _id: 'sale-pads',
+                name: 'Cricket Batting Pads',
+                description: 'Professional grade batting pads',
+                price: 1199,
+                category: 'cricket',
+                image: 'https://a2cricket.com/cdn/shop/files/A2Cricket-CricketBattingPads_7_1400x.jpg?v=1690984808',
+                section: 'sale'
+            },
+            {
+                _id: 'sale-football',
+                name: 'Professional Football',
+                description: 'High-quality match football',
+                price: 1299,
+                category: 'football',
+                image: 'https://contents.mediadecathlon.com/p2571328/bcd3c25846279cde8d74b9996aef2566/p2571328.jpg?format=auto&quality=70&f=2520x0',
+                section: 'sale'
+            },
+            {
+                _id: 'sale-gloves',
+                name: 'Cricket Batting Gloves',
+                description: 'Professional batting gloves',
+                price: 629,
+                category: 'cricket',
+                image: 'https://sportsgoodsmarket.com/wp-content/uploads/2020/12/PRO-5-scaled.jpg',
+                section: 'sale'
+            },
+            {
+                _id: 'sale-helmet',
+                name: 'Cricket Helmet',
+                description: 'Protective cricket helmet',
+                price: 974,
+                category: 'cricket',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFFjrb83_2blLq98U-oonOUB3NSU5JaX3-Dw&s',
+                section: 'sale'
+            }
+        ];
 
         // Load products from API
         async function loadProducts() {
@@ -430,15 +516,23 @@
                     // Organize products by category
                     allProducts.cricket = data.products.filter(p => p.category === 'cricket');
                     allProducts.football = data.products.filter(p => p.category === 'football');
+                    allProductsFlat = data.products;
+                    
+                    // Add hardcoded products to the flat array for search
+                    allProductsFlat = [...allProductsFlat, ...hardcodedProducts];
                     
                     // Display current category
                     const currentCategory = document.getElementById('cricket-products').classList.contains('hidden') ? 'football' : 'cricket';
                     displayProducts(currentCategory);
                 } else {
                     console.error('Failed to load products:', data.message);
+                    // If API fails, at least include hardcoded products for search
+                    allProductsFlat = [...hardcodedProducts];
                 }
             } catch (error) {
                 console.error('Error loading products:', error);
+                // If API fails, at least include hardcoded products for search
+                allProductsFlat = [...hardcodedProducts];
             }
         }
 
@@ -666,6 +760,339 @@
             }, 2000);
         }
 
+        // --- Product Search Logic ---
+        const searchInput = document.getElementById('product-search');
+        const suggestionsBox = document.getElementById('search-suggestions');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (!query) {
+                suggestionsBox.style.display = 'none';
+                suggestionsBox.innerHTML = '';
+                return;
+            }
+            
+            // Enhanced search - look for matches in name, description, and keywords
+            const matches = allProductsFlat.filter(p => {
+                const name = p.name.toLowerCase();
+                const description = p.description.toLowerCase();
+                const category = p.category.toLowerCase();
+                
+                return name.includes(query) || 
+                       description.includes(query) || 
+                       category.includes(query) ||
+                       // Handle common search terms
+                       (query.includes('bat') && (name.includes('bat') || name.includes('cricket'))) ||
+                       (query.includes('ball') && (name.includes('ball') || name.includes('football'))) ||
+                       (query.includes('boot') && name.includes('boot')) ||
+                       (query.includes('pad') && name.includes('pad')) ||
+                       (query.includes('glove') && name.includes('glove')) ||
+                       (query.includes('helmet') && name.includes('helmet')) ||
+                       (query.includes('kit') && name.includes('kit'));
+            });
+            
+            // Sort matches by relevance (exact name matches first)
+            matches.sort((a, b) => {
+                const aNameMatch = a.name.toLowerCase().includes(query);
+                const bNameMatch = b.name.toLowerCase().includes(query);
+                if (aNameMatch && !bNameMatch) return -1;
+                if (!aNameMatch && bNameMatch) return 1;
+                return 0;
+            });
+            
+            if (matches.length === 0) {
+                suggestionsBox.innerHTML = '<div class="search-no-results">No products found</div>';
+                suggestionsBox.style.display = 'block';
+                return;
+            }
+            
+            // Limit to 8 results to avoid overwhelming the user
+            const limitedMatches = matches.slice(0, 8);
+            
+            suggestionsBox.innerHTML = limitedMatches.map(p => {
+                // Add category badge for better identification
+                const categoryBadge = `<span class="search-category-badge">${p.category}</span>`;
+                const sectionBadge = p.section ? `<span class="search-section-badge">${p.section}</span>` : '';
+                
+                return `<div class="search-suggestion-item" data-id="${p._id}">
+                    <img src="${p.image}" alt="${p.name}" class="search-suggestion-image" onerror="this.src='https://via.placeholder.com/40x40?text=No+Image'">
+                    <div class="search-suggestion-content">
+                        <span class="search-suggestion-text">${p.name}</span>
+                        <div class="search-suggestion-badges">
+                            ${categoryBadge}
+                            ${sectionBadge}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+            suggestionsBox.style.display = 'block';
+        });
+
+        suggestionsBox.addEventListener('click', function(e) {
+            console.log('Search suggestion clicked:', e.target);
+            const item = e.target.closest('.search-suggestion-item');
+            console.log('Found suggestion item:', item);
+            
+            if (item) {
+                const productId = item.getAttribute('data-id');
+                console.log('Searching for product with ID:', productId);
+                
+                // Find the product in our loaded products
+                const product = allProductsFlat.find(p => p._id === productId);
+                console.log('Found product:', product);
+                
+                if (product) {
+                    console.log('Navigating to product:', product.name);
+                    navigateToProduct(product);
+                    
+                    // Clear search input and hide suggestions
+                    searchInput.value = '';
+                    suggestionsBox.style.display = 'none';
+                    suggestionsBox.innerHTML = '';
+                } else {
+                    console.error('Product not found in allProductsFlat array');
+                    console.log('Available products:', allProductsFlat.map(p => ({id: p._id, name: p.name})));
+                }
+            } else {
+                console.log('No suggestion item found for click target');
+            }
+        });
+
+        // Prevent search input from losing focus when clicking on suggestions
+        suggestionsBox.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+        });
+
+        // Enhanced navigation function to handle all product types
+        function navigateToProduct(product) {
+            console.log('=== NAVIGATING TO PRODUCT ===');
+            console.log('Product:', product);
+            
+            const productId = product._id;
+            
+            // Handle hardcoded products (featured/sale)
+            if (product.section) {
+                console.log('Navigating to hardcoded product - section:', product.section);
+                
+                // First scroll to the section
+                const section = document.querySelector(`#${product.section}`);
+                console.log('Section element found:', section);
+                
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Wait for scroll to complete, then find and highlight the product
+                    setTimeout(() => {
+                        highlightProductCard(productId);
+                    }, 800);
+                } else {
+                    console.error('Section not found:', product.section);
+                }
+            } else {
+                console.log('Navigating to API product - category:', product.category);
+                
+                // Handle API products - first make sure the category is shown
+                const currentCategory = product.category;
+                const currentActiveTab = document.querySelector('.category-tab.active');
+                console.log('Current active tab:', currentActiveTab);
+                
+                const currentActiveCategory = currentActiveTab ? currentActiveTab.id.replace('-tab', '') : 'cricket';
+                console.log('Current active category:', currentActiveCategory);
+                
+                // If we need to switch categories
+                if (currentActiveCategory !== currentCategory) {
+                    console.log('Switching category from', currentActiveCategory, 'to', currentCategory);
+                    showCategory(currentCategory);
+                    
+                    // Wait for category switch and product rendering
+                    setTimeout(() => {
+                        scrollToProductsAndHighlight(productId);
+                    }, 1200); // Increased wait time
+                } else {
+                    console.log('Already on correct category:', currentCategory);
+                    // Already on correct category, just scroll and highlight
+                    scrollToProductsAndHighlight(productId);
+                }
+            }
+        }
+
+        // Function to scroll to products section and highlight specific product
+        function scrollToProductsAndHighlight(productId) {
+            // Scroll to products section first
+            const productsSection = document.querySelector('#products');
+            if (productsSection) {
+                productsSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Wait for scroll to complete, then highlight
+            setTimeout(() => {
+                highlightProductCard(productId);
+            }, 800);
+        }
+
+        // Function to find and highlight a product card
+        function highlightProductCard(productId) {
+            console.log('=== HIGHLIGHTING PRODUCT CARD ===');
+            console.log('Looking for product ID:', productId);
+            
+            // Try to find the product card
+            let productCard = findProductCard(productId);
+            
+            if (productCard) {
+                console.log('Found product card:', productCard);
+                console.log('Product card classes:', productCard.className);
+                
+                // Add highlight effect
+                productCard.classList.add('product-highlight');
+                
+                // Scroll to the specific product card
+                productCard.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Remove highlight after 3 seconds
+                setTimeout(() => {
+                    productCard.classList.remove('product-highlight');
+                }, 3000);
+            } else {
+                console.error('Product card not found after all attempts:', productId);
+                console.log('Available product cards on page:');
+                const allCards = document.querySelectorAll('[data-product-id]');
+                allCards.forEach(card => {
+                    console.log('- Card ID:', card.getAttribute('data-product-id'), 'Title:', card.querySelector('.card-title')?.textContent);
+                });
+            }
+        }
+
+        // Function to find a product card using multiple strategies
+        function findProductCard(productId) {
+            console.log('=== FINDING PRODUCT CARD ===');
+            console.log('Searching for product ID:', productId);
+            
+            // Strategy 1: Direct search by data-product-id
+            let productCard = document.querySelector(`[data-product-id="${productId}"]`);
+            if (productCard) {
+                console.log('Found product card using direct search');
+                return productCard;
+            }
+            
+            // Strategy 2: Search in all possible containers
+            const containers = [
+                '#cricket-grid',
+                '#cricket-carousel-items',
+                '#football-grid', 
+                '#football-carousel-items',
+                '#featured .product-grid',
+                '#sale .flash-sale-grid'
+            ];
+            
+            console.log('Searching in containers:', containers);
+            
+            for (let container of containers) {
+                const containerElement = document.querySelector(container);
+                console.log(`Container ${container}:`, containerElement);
+                
+                if (containerElement) {
+                    productCard = containerElement.querySelector(`[data-product-id="${productId}"]`);
+                    if (productCard) {
+                        console.log('Found product card in container:', container);
+                        return productCard;
+                    }
+                }
+            }
+            
+            // Strategy 3: Search by product name (fallback)
+            const product = allProductsFlat.find(p => p._id === productId);
+            if (product) {
+                console.log('Attempting name-based search for:', product.name);
+                const allCards = document.querySelectorAll('.card');
+                console.log('Total cards found:', allCards.length);
+                
+                for (let card of allCards) {
+                    const titleElement = card.querySelector('.card-title');
+                    if (titleElement) {
+                        const cardTitle = titleElement.textContent.trim();
+                        console.log('Comparing:', cardTitle, 'vs', product.name);
+                        
+                        if (cardTitle === product.name) {
+                            console.log('Found product card by name match');
+                            return card;
+                        }
+                    }
+                }
+            }
+            
+            console.log('Product card not found with any strategy');
+            return null;
+        }
+
+        // Hide suggestions on blur (with delay to allow clicks)
+        searchInput.addEventListener('blur', function() {
+            // Increased delay to ensure click events are processed
+            setTimeout(() => { 
+                suggestionsBox.style.display = 'none';
+                suggestionsBox.innerHTML = ''; 
+            }, 300);
+        });
+
+        // Show suggestions on focus if there's a value
+        searchInput.addEventListener('focus', function() {
+            if (this.value.trim()) {
+                // Trigger input event to show suggestions
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // Clear search on Escape key and add arrow key navigation
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                suggestionsBox.style.display = 'none';
+                suggestionsBox.innerHTML = '';
+                return;
+            }
+            
+            // Handle arrow key navigation
+            const suggestions = suggestionsBox.querySelectorAll('.search-suggestion-item');
+            if (suggestions.length === 0) return;
+            
+            const currentActive = suggestionsBox.querySelector('.search-suggestion-item.active');
+            let currentIndex = currentActive ? Array.from(suggestions).indexOf(currentActive) : -1;
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % suggestions.length;
+                updateActiveSearchItem(suggestions, currentIndex);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                currentIndex = currentIndex <= 0 ? suggestions.length - 1 : currentIndex - 1;
+                updateActiveSearchItem(suggestions, currentIndex);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (currentActive) {
+                    currentActive.click();
+                } else if (suggestions.length > 0) {
+                    suggestions[0].click();
+                }
+            }
+        });
+        
+        // Function to update active search item
+        function updateActiveSearchItem(suggestions, activeIndex) {
+            suggestions.forEach((item, index) => {
+                if (index === activeIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -678,9 +1105,26 @@
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', async function () {
+            console.log('=== PAGE INITIALIZATION ===');
+            console.log('Loading products...');
+            
             await loadProducts(); // Load products from API
+            
+            console.log('Products loaded. Total products:', allProductsFlat.length);
+            console.log('All products:', allProductsFlat.map(p => ({id: p._id, name: p.name, category: p.category, section: p.section})));
+            
             showCategory('cricket'); // Show cricket products by default
             startProductSync(); // Start periodic sync
+            
+            // Debug: Log all product cards found on page
+            console.log('=== DEBUG: ALL PRODUCT CARDS ON PAGE ===');
+            setTimeout(() => {
+                const allCards = document.querySelectorAll('[data-product-id]');
+                console.log('Total product cards found:', allCards.length);
+                allCards.forEach(card => {
+                    console.log('- Card ID:', card.getAttribute('data-product-id'), 'Title:', card.querySelector('.card-title')?.textContent);
+                });
+            }, 1000);
         });
     </script>
 </body>

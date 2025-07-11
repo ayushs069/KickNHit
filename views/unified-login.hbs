@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="auth-page login-page">
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <a href="/" class="nav-brand">KickNHit</a>
+                </div>
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to your account</p>
+                <p style="font-size: 0.8rem; color: #6b7280; margin-top: 0.5rem; margin-bottom: 0;">
+                    <strong>Note:</strong> Works for both Users and Administrators
+                </p>
+            </div>
+
+            <form action="/login" method="POST" class="auth-form">
+                {{#if error}}
+                <div class="error-box">
+                    <div class="error-content">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-text">{{error}}</span>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if success}}
+                <div class="success-box">
+                    <div class="success-content">
+                        <span class="success-icon">✅</span>
+                        <span class="success-text">{{success}}</span>
+                    </div>
+                </div>
+                {{/if}}
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="/user/signup" class="auth-link">Sign up as User</a></p>
+                <p><a href="/" class="auth-link">← Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-focus on email field
+        document.getElementById('email').focus();
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                e.preventDefault();
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (password.length < 6) {
+                e.preventDefault();
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+        });
+    </script>
+</body>
+
+</html>
