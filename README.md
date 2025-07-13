@@ -22,7 +22,7 @@ A full-stack e-commerce web application for sports equipment built with Node.js,
    - Add the following variables:
      ```
      NODE_ENV=development
-     PORT=3000
+     PORT=3002
      MONGODB_URI=your-mongodb-connection-string
      SESSION_SECRET=your-session-secret-key
      ```
@@ -46,7 +46,7 @@ A full-stack e-commerce web application for sports equipment built with Node.js,
    ```
 
 7. **Access the application**
-   - Landing Page: http://localhost:3000
+   - Landing Page: http://localhost:3002
    - User Dashboard: Login required
    - Admin Dashboard: Login required
 
@@ -66,28 +66,36 @@ A full-stack e-commerce web application for sports equipment built with Node.js,
 
 ```
 KickNHit/
-├── controllers/
-│   ├── adminController.js      # Admin-specific controllers
-│   └── productController.js    # Product management
-├── models/
-│   ├── Admin.js               # Admin model
-│   ├── Product.js             # Product model
-│   └── User.js                # User model
-├── routes/
-│   ├── apiRoutes.js           # API endpoints
-│   └── authRoutes.js          # Authentication routes
-├── views/
-│   ├── landing.hbs            # Landing page
-│   ├── unified-login.hbs      # Unified login for users and admins
-│   ├── admin-dashboard.hbs    # Admin dashboard
-│   ├── user-signup.hbs        # User signup
-│   └── user-dashboard.hbs     # User dashboard
-├── public/
+├── auth/                          # Authentication logic
+│   └── auth.js                   # Authentication service
+├── controllers/                   # Business logic controllers
+│   ├── authController.js         # Authentication controller
+│   ├── adminController.js        # Admin controller
+│   ├── productController.js      # Product controller
+│   └── userController.js         # User controller
+├── middleware/                    # Custom middleware
+│   └── auth.js                   # Authentication middleware
+├── models/                        # Database models
+│   ├── Admin.js                  # Admin model
+│   ├── Product.js                # Product model
+│   └── User.js                   # User model
+├── routes/                        # Route definitions
+│   ├── authRoutes.js             # Authentication routes
+│   └── apiRoutes.js              # API routes
+├── views/                         # Template files
+│   ├── landing.hbs               # Landing page
+│   ├── unified-login.hbs         # Unified login for users and admins
+│   ├── admin-dashboard.hbs       # Admin dashboard
+│   ├── user-signup.hbs           # User signup
+│   └── user-dashboard.hbs        # User dashboard
+├── public/                        # Static assets
 │   └── css/
-│       └── styles.css         # Custom styles
-├── app.js                     # Main application file
-├── package.json              # Dependencies
-└── README.md                 # Documentation
+│       └── styles.css            # Custom styles
+├── app.js                         # Main application file
+├── addDemoProducts.js            # Demo products script
+├── insertDemoData.js             # Demo data script
+├── package.json                  # Dependencies
+└── README.md                     # Documentation
 ```
 
 ## 🛠️ Tech Stack
@@ -150,10 +158,15 @@ KickNHit/
 - Implemented a unified login for both Users and Admins, removing the need for separate login pages.
 - Enhanced the styling of the SignUp and Login pages for a better user interface.
 
-### Day 10
+### Day 10 ✅
 - Completed UI finishing across all pages.
 - Verified all major features (auth, cart, dashboards, product CRUD) are functional and bug-free.
 - Conducted final testing for both admin and user flows.
+
+### Day 11 ✅
+- Fixed validation and session errors during login/signup for both users and admins.
+- Restructured folder organization for better modularity and scalability.
+- Cleaned and optimized backend logic for authentication and route handling.
 
 ## 🚀 Quick Start Guide
 
@@ -161,7 +174,7 @@ KickNHit/
 2. Create `.env` with your MongoDB URI
 3. Run `node insertDemoData.js` (optional - for demo data)
 4. Start with `npm start`
-5. Visit http://localhost:3000 to see the landing page
+5. Visit http://localhost:3002 to see the landing page
 6. Use demo credentials to access admin/user dashboards
 
 ## 🎯 Future Enhancements

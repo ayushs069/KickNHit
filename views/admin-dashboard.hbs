@@ -718,7 +718,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Reload products from API to get the updated list 
+                        // Reload products from API to get the updated list  
                         loadProducts().then(() => {
                             // Show the current category after reload for consistency
                             const currentCategory = document.getElementById('cricket-products').classList.contains('hidden') ? 'football' : 'cricket';
@@ -760,7 +760,7 @@
                 image: formData.get('productImage')
             };
 
-            // Send update request to backend API
+            // Send update request to backend API for the specific product
             fetch(`/api/admin/products/${productId}`, {
                 method: 'PUT',
                 headers: {

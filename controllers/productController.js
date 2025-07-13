@@ -1,4 +1,9 @@
-const Product = require('../../models/Product');
+const Product = require('../models/Product');
+
+/**
+ * Product Controller
+ * Handles all product-related business logic
+ */
 
 // Get all products (API endpoint)
 const getAllProducts = async (req, res) => {
@@ -67,7 +72,7 @@ const addProduct = async (req, res) => {
             price: parseFloat(price),
             category,
             image: image.trim(),
-            createdBy: req.session.user._id
+            createdBy: req.session.user.id
         });
 
         await product.save();
@@ -197,74 +202,11 @@ const editProduct = async (req, res) => {
     }
 };
 
-// Admin-only route handlers
-const getProductsPage = (req, res) => {
-    res.render('admin-products', { 
-        title: 'Manage Products',
-        user: req.session.user 
-    });
-};
-
-const getAddProductPage = (req, res) => {
-    res.render('admin-add-product', { 
-        title: 'Add Product',
-        user: req.session.user 
-    });
-};
-
-const postAddProduct = async (req, res) => {
-    try {
-        await addProduct(req, res);
-    } catch (error) {
-        res.redirect('/admin/products?error=Unable to add product');
-    }
-};
-
-const getEditProductPage = async (req, res) => {
-    try {
-        const product = await Product.findById(req.params.id);
-        if (!product) {
-            return res.redirect('/admin/products?error=Product not found');
-        }
-        
-        res.render('admin-edit-product', { 
-            title: 'Edit Product',
-            user: req.session.user,
-            product 
-        });
-    } catch (error) {
-        res.redirect('/admin/products?error=Unable to load product');
-    }
-};
-
-const postEditProduct = async (req, res) => {
-    try {
-        const { name, description, price, category, image } = req.body;
-        
-        await Product.findByIdAndUpdate(req.params.id, {
-            name: name.trim(),
-            description: description.trim(),
-            price: parseFloat(price),
-            category,
-            image: image.trim()
-        });
-
-        res.redirect('/admin/products?success=Product updated successfully');
-    } catch (error) {
-        res.redirect('/admin/products?error=Unable to update product');
-    }
-};
-
 module.exports = {
     getAllProducts,
     getProductsByCategory,
     addProduct,
     deleteProduct,
     getProductById,
-    editProduct,
-    getProductsPage,
-    getAddProductPage,
-    postAddProduct,
-    getEditProductPage,
-    postEditProduct
+    editProduct
 };

@@ -1,14 +1,11 @@
-const Admin = require('../../models/Admin');
-const Product = require('../../models/Product');
-const User = require('../../models/User');
+const Admin = require('../models/Admin');
+const Product = require('../models/Product');
+const User = require('../models/User');
 
-// Middleware to check if user is admin
-const requireAdmin = (req, res, next) => {
-    if (!req.session.user || req.session.user.role !== 'admin') {
-        return res.redirect('/login');
-    }
-    next();
-};
+/**
+ * Admin Controller
+ * Handles all admin-related requests and business logic
+ */
 
 // Get admin dashboard with stats and recent products
 const getDashboard = async (req, res) => {
@@ -53,7 +50,7 @@ const getDashboard = async (req, res) => {
 // Get admin profile
 const getProfile = async (req, res) => {
     try {
-        const admin = await Admin.findById(req.session.user._id);
+        const admin = await Admin.findById(req.session.user.id);
         if (!admin) {
             return res.redirect('/login');
         }
@@ -73,7 +70,7 @@ const getProfile = async (req, res) => {
 const updateProfile = async (req, res) => {
     try {
         const { firstName, lastName, email, phone } = req.body;
-        const adminId = req.session.user._id;
+        const adminId = req.session.user.id;
 
         // Validation
         if (!firstName || !lastName || !email) {
@@ -103,27 +100,30 @@ const updateProfile = async (req, res) => {
                 firstName,
                 lastName,
                 email: email.toLowerCase(),
-                phone: phone || ''
+                phone
             },
-            { new: true }
+            { new: true, select: '-password' }
         );
+
+        if (!updatedAdmin) {
+            return res.json({
+                success: false,
+                message: 'Admin not found'
+            });
+        }
 
         // Update session data
         req.session.user.firstName = updatedAdmin.firstName;
         req.session.user.lastName = updatedAdmin.lastName;
+        req.session.user.email = updatedAdmin.email;
 
         res.json({
             success: true,
             message: 'Profile updated successfully',
-            admin: {
-                firstName: updatedAdmin.firstName,
-                lastName: updatedAdmin.lastName,
-                email: updatedAdmin.email,
-                phone: updatedAdmin.phone
-            }
+            admin: updatedAdmin
         });
     } catch (error) {
-        console.error('Update admin profile error:', error);
+        console.error('Update profile error:', error);
         res.json({
             success: false,
             message: 'Failed to update profile'
@@ -135,7 +135,7 @@ const updateProfile = async (req, res) => {
 const changePassword = async (req, res) => {
     try {
         const { currentPassword, newPassword, confirmPassword } = req.body;
-        const adminId = req.session.user._id;
+        const adminId = req.session.user.id;
 
         // Validation
         if (!currentPassword || !newPassword || !confirmPassword) {
@@ -266,7 +266,6 @@ const getSystemStats = async (req, res) => {
 };
 
 module.exports = {
-    requireAdmin,
     getDashboard,
     getProfile,
     updateProfile,

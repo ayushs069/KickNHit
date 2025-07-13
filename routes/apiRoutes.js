@@ -1,30 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const productController = require('../controllers/admin/productController');
-
-// Middleware to check if user is authenticated
-const requireAuth = (req, res, next) => {
-    if (req.session.user) {
-        next();
-    } else {
-        res.status(401).json({
-            success: false,
-            message: 'Authentication required'
-        });
-    }
-};
-
-// Middleware to check if user is admin
-const requireAdminAuth = (req, res, next) => {
-    if (req.session.user && req.session.user.role === 'admin') {
-        next();
-    } else {
-        res.status(403).json({
-            success: false,
-            message: 'Admin access required'
-        });
-    }
-};
+const productController = require('../controllers/productController');
+const { requireAuth, requireAdminAuth } = require('../middleware/auth');
 
 // Public API routes (for user dashboard)
 router.get('/products', productController.getAllProducts);
