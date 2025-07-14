@@ -1,0 +1,52 @@
+<!-- Cart Section -->
+<section id="cart" class="cart-section">
+    <div class="cart-container">
+        <div class="section-title">Your Shopping Cart</div>
+        <div class="section-description">Review your selected items and proceed to checkout</div>
+        
+        <div class="cart-grid">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <div id="cart-items">
+                    <div class="empty-state">
+                        <div class="empty-icon">🛒</div>
+                        <p class="empty-message">Your cart is empty</p>
+                        <p class="empty-submessage">Add some products to get started!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3 class="order-summary-title">Order Summary</h3>
+                <div class="order-summary-line">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="order-summary-line" style="color: #059669;">
+                    <span>Shipping:</span>
+                    <span>FREE</span>
+                </div>
+                <div class="order-summary-line order-summary-total">
+                    <span>Total:</span>
+                    <span id="total">₹0</span>
+                </div>
+                <button id="checkout-btn" onclick="checkout()" class="checkout-btn" disabled>
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Modal -->
+<div id="success-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-icon">🎉</div>
+        <h3 class="modal-title">Order Placed Successfully!</h3>
+        <p class="modal-message">Thank you for shopping with KickNHit. Your order will be delivered soon!</p>
+        <button onclick="closeModal()" class="btn btn-primary">
+            Continue Shopping
+        </button>
+    </div>
+</div>

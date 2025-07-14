@@ -8,27 +8,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <a href="/admin/dashboard" class="nav-brand">KickNHit Admin</a>
-            </div>
-
-            <div class="nav-links">
-                <a href="#products" class="nav-link">📦 PRODUCTS</a>
-                <a href="#add-product" class="nav-link">➕ ADD PRODUCT</a>
-            </div>
-
-            <div class="nav-user">
-                <span class="nav-user-info">ADMIN: <strong>{{user.firstName}}</strong></span>
-                <form action="/logout" method="POST" style="display: inline;">
-                    <button type="submit" class="btn btn-outline btn-sm">
-                        LOGOUT
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </header>
+    {{> navbar-admin}}
 
     <!-- Hero Section -->
     <section class="hero">
@@ -58,28 +38,7 @@
     </section>
 
     <!-- Stats -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">Happy Customers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Products</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Brands</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> stats}}
 
     <!-- Add Product Form -->
     <section id="add-product" class="form-section">
@@ -131,253 +90,13 @@
     </section>
 
     <!-- Product Categories Section -->
-    <section id="products" class="py-16 bg-white">
-        <div    <!-- Product Categories -->
-    <section id="products" class="section">
-        <div class="container-wide">
-            <div class="section-title">Current Product Catalog</div>
-            <div class="section-description">View all products that customers can see and purchase</div>
-
-            <!-- Category Tabs -->
-            <div class="tabs">
-                <div class="tab-container">
-                    <button onclick="showCategory('cricket')" id="cricket-tab" class="tab-button active">
-                        🏏 Cricket
-                    </button>
-                    <button onclick="showCategory('football')" id="football-tab" class="tab-button">
-                        ⚽ Football
-                    </button>
-                </div>
-            </div>
-
-            <!-- Cricket Products -->
-            <div id="cricket-products">
-                <!-- Carousel View -->
-                <div id="cricket-carousel" class="hidden">
-                    <div class="carousel-controls">
-                        <h3 style="font-size: 1.25rem; font-weight: bold;">Cricket Products</h3>
-                        <div class="carousel-nav">
-                            <button onclick="scrollCarousel('cricket-carousel-items', -1)" class="carousel-btn">
-                                ←
-                            </button>
-                            <button onclick="scrollCarousel('cricket-carousel-items', 1)" class="carousel-btn">
-                                →
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-carousel" id="cricket-carousel-items">
-                        <!-- Products will be loaded here -->
-                    </div>
-                </div>
-                
-                <!-- Grid View -->
-                <div id="cricket-grid" class="product-grid">
-                    <!-- Products will be loaded here -->
-                </div>
-            </div>
-
-            <!-- Football Products -->
-            <div id="football-products" class="hidden">
-                <!-- Carousel View -->
-                <div id="football-carousel" class="hidden">
-                    <div class="carousel-controls">
-                        <h3 style="font-size: 1.25rem; font-weight: bold;">Football Products</h3>
-                        <div class="carousel-nav">
-                            <button onclick="scrollCarousel('football-carousel-items', -1)" class="carousel-btn">
-                                ←
-                            </button>
-                            <button onclick="scrollCarousel('football-carousel-items', 1)" class="carousel-btn">
-                                →
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-carousel" id="football-carousel-items">
-                        <!-- Products will be loaded here -->
-                    </div>
-                </div>
-                
-                <!-- Grid View -->
-                <div id="football-grid" class="product-grid">
-                    <!-- Products will be loaded here -->
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> product-categories isAdmin=true}}
 
     <!-- Featured Products -->
-    <section id="featured" class="section" style="background: #f9fafb;">
-        <div class="container-wide">
-            <div class="section-title">Featured Products</div>
-            <div class="section-description">Hand-picked favorites loved by professionals</div>
-
-            <div class="product-grid">
-                <!-- Featured Cricket Bat -->
-                <div class="card featured-card">
-                    <div style="position: relative;">
-                        <img src="https://admin.thecricketer.com/weblab/sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/kookaburra_nickel_4.1.jpg"
-                            alt="Professional Cricket Bat" class="card-img">
-                        <div class="featured-badge">FEATURED</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Professional Cricket Bat</h3>
-                        <p class="card-description">Premium English Willow - used by International players</p>
-                        <div class="card-footer">
-                            <span class="card-price">₹4,999</span>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Featured Football Boots -->
-                <div class="card featured-card">
-                    <div style="position: relative;">
-                        <img src="https://preview.free3d.com/img/2010/06/1871863703398254318/o29lvvye.jpg"
-                            alt="Professional Football Boots" class="card-img">
-                        <div class="featured-badge">FEATURED</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Elite Football Boots</h3>
-                        <p class="card-description">Professional grade boots with advanced grip technology</p>
-                        <div class="card-footer">
-                            <span class="card-price">₹5,999</span>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Featured Kit -->
-                <div class="card featured-card">
-                    <div style="position: relative;">
-                        <img src="https://5.imimg.com/data5/SELLER/Default/2024/6/424095483/DF/VP/RY/163043379/whatsapp-image-2024-06-01-at-3-26-20-pm-500x500.jpeg"
-                            alt="Complete Cricket Kit" class="card-img">
-                        <div class="featured-badge">FEATURED</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Complete Cricket Kit</h3>
-                        <p class="card-description">Everything you need: bat, pads, gloves, helmet</p>
-                        <div class="card-footer">
-                            <span class="card-price">₹8,999</span>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> featured-products userDashboard=false}}
 
     <!-- Sale Section -->
-    <section id="sale" class="sale-section">
-        <div class="container-wide">
-            <div class="section-title">Flash Sale - Limited Time!</div>
-            <div class="section-description">Up to 40% off on selected items</div>
-
-            <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <!-- Sale Item 1 -->
-                <div class="card sale-card">
-                    <div style="position: relative;">
-                        <img src="https://a2cricket.com/cdn/shop/files/A2Cricket-CricketBattingPads_7_1400x.jpg?v=1690984808"
-                            alt="Cricket Pads" class="card-img">
-                        <div class="sale-badge">40% OFF</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Cricket Batting Pads</h3>
-                        <div class="card-footer">
-                            <div class="sale-price">
-                                <span class="sale-price-main">₹1,199</span>
-                                <span class="original-price">₹1,999</span>
-                            </div>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sale Item 2 -->
-                <div class="card sale-card">
-                    <div style="position: relative;">
-                        <img src="https://contents.mediadecathlon.com/p2571328/bcd3c25846279cde8d74b9996aef2566/p2571328.jpg?format=auto&quality=70&f=2520x0"
-                            alt="Football" class="card-img">
-                        <div class="sale-badge">35% OFF</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Professional Football</h3>
-                        <div class="card-footer">
-                            <div class="sale-price">
-                                <span class="sale-price-main">₹1,299</span>
-                                <span class="original-price">₹1,999</span>
-                            </div>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sale Item 3 -->
-                <div class="card sale-card">
-                    <div style="position: relative;">
-                        <img src="https://sportsgoodsmarket.com/wp-content/uploads/2020/12/PRO-5-scaled.jpg"
-                            alt="Cricket Gloves" class="card-img">
-                        <div class="sale-badge">30% OFF</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Cricket Batting Gloves</h3>
-                        <div class="card-footer">
-                            <div class="sale-price">
-                                <span class="sale-price-main">₹629</span>
-                                <span class="original-price">₹899</span>
-                            </div>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sale Item 4 -->
-                <div class="card sale-card">
-                    <div style="position: relative;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFFjrb83_2blLq98U-oonOUB3NSU5JaX3-Dw&s"
-                            alt="Cricket Helmet" class="card-img">
-                        <div class="sale-badge">25% OFF</div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Cricket Helmet</h3>
-                        <div class="card-footer">
-                            <div class="sale-price">
-                                <span class="sale-price-main">₹974</span>
-                                <span class="original-price">₹1,299</span>
-                            </div>
-                            <div class="card-actions">
-                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
-                                    Demo Product
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> sale-products userDashboard=false}}
 
     <!-- Success Modal -->
     <div id="success-modal" class="modal hidden">
@@ -443,13 +162,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="text-center" style="padding: 2rem 0; color: #6b7280; font-size: 0.875rem;">
-                <p>&copy; 2024 KickNHit. All rights reserved. | Admin Dashboard</p>
-            </div>
-        </div>
-    </footer>
+    {{> footer}}
 
     <!-- JavaScript -->
     <script>

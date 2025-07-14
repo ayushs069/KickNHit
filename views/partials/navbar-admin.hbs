@@ -1,0 +1,22 @@
+<!-- Admin Dashboard Navigation -->
+<header class="header">
+    <nav class="nav">
+        <div class="nav-brand">
+            <a href="/admin/dashboard" class="nav-brand">KickNHit Admin</a>
+        </div>
+
+        <div class="nav-links">
+            <a href="#products" class="nav-link">📦 PRODUCTS</a>
+            <a href="#add-product" class="nav-link">➕ ADD PRODUCT</a>
+        </div>
+
+        <div class="nav-user">
+            <span class="nav-user-info">ADMIN: <strong>{{user.firstName}}</strong></span>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-outline btn-sm">
+                    LOGOUT
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>

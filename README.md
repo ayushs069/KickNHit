@@ -168,6 +168,11 @@ KickNHit/
 - Restructured folder organization for better modularity and scalability.
 - Cleaned and optimized backend logic for authentication and route handling.
 
+### Day 12 ✅
+- Refactored codebase for modularity with Handlebars partials (navbar, footer, stats, cart, featured products, sale products, product categories).
+- Extracted all reusable sections into partials to eliminate code duplication.
+- Fixed dimension inconsistencies between user and admin dashboards for featured and sale product sections.
+
 ## 🚀 Quick Start Guide
 
 1. Run `npm install`

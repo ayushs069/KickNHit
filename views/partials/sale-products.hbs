@@ -1,0 +1,126 @@
+<!-- Sale Section -->
+<section id="sale" class="sale-section">
+    <div class="container-wide">
+        <div class="section-title">Flash Sale - Limited Time!</div>
+        <div class="section-description">Up to 40% off on selected items</div>
+
+        <!-- Standardized grid layout for consistent dimensions -->
+        <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <!-- Sale Item 1 -->
+            <div class="card sale-card" data-product-id="sale-pads">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://a2cricket.com/cdn/shop/files/A2Cricket-CricketBattingPads_7_1400x.jpg?v=1690984808"
+                        alt="Cricket Pads" class="card-img">
+                    <div class="sale-badge">40% OFF</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Cricket Batting Pads</h3>
+                    <div class="card-footer">
+                        <div class="sale-price">
+                            <span class="sale-price-main">₹1,199</span>
+                            <span class="original-price">₹1,999</span>
+                        </div>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('sale-pads', 'Cricket Batting Pads', 1199)" class="btn btn-danger btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sale Item 2 -->
+            <div class="card sale-card" data-product-id="sale-football">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://contents.mediadecathlon.com/p2571328/bcd3c25846279cde8d74b9996aef2566/p2571328.jpg?format=auto&quality=70&f=2520x0"
+                        alt="Football" class="card-img">
+                    <div class="sale-badge">35% OFF</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Professional Football</h3>
+                    <div class="card-footer">
+                        <div class="sale-price">
+                            <span class="sale-price-main">₹1,299</span>
+                            <span class="original-price">₹1,999</span>
+                        </div>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('sale-football', 'Professional Football', 1299)" class="btn btn-danger btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sale Item 3 -->
+            <div class="card sale-card" data-product-id="sale-gloves">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://sportsgoodsmarket.com/wp-content/uploads/2020/12/PRO-5-scaled.jpg"
+                        alt="Cricket Gloves" class="card-img">
+                    <div class="sale-badge">30% OFF</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Cricket Batting Gloves</h3>
+                    <div class="card-footer">
+                        <div class="sale-price">
+                            <span class="sale-price-main">₹629</span>
+                            <span class="original-price">₹899</span>
+                        </div>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('sale-gloves', 'Cricket Batting Gloves', 629)" class="btn btn-danger btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sale Item 4 -->
+            <div class="card sale-card" data-product-id="sale-helmet">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFFjrb83_2blLq98U-oonOUB3NSU5JaX3-Dw&s"
+                        alt="Cricket Helmet" class="card-img">
+                    <div class="sale-badge">25% OFF</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Cricket Helmet</h3>
+                    <div class="card-footer">
+                        <div class="sale-price">
+                            <span class="sale-price-main">₹974</span>
+                            <span class="original-price">₹1,299</span>
+                        </div>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('sale-helmet', 'Cricket Helmet', 974)" class="btn btn-danger btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

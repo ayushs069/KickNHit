@@ -4,6 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const hbs = require('hbs');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -23,6 +24,26 @@ mongoose.connect(process.env.MONGODB_URI, {
 // View engine setup
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Register partials directory
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'), function (err) {
+    if (err) {
+        console.error('Error registering partials:', err);
+    } else {
+        console.log('Partials registered successfully');
+    }
+});
+
+// Manually register partials to ensure they're loaded
+const partialsDir = path.join(__dirname, 'views', 'partials');
+const partialFiles = fs.readdirSync(partialsDir);
+partialFiles.forEach(file => {
+    if (file.endsWith('.hbs')) {
+        const partialName = file.replace('.hbs', '');
+        const partialContent = fs.readFileSync(path.join(partialsDir, file), 'utf8');
+        hbs.registerPartial(partialName, partialContent);
+    }
+});
 
 // Middleware
 app.use(express.json());

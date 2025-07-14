@@ -1,0 +1,38 @@
+<!-- User Dashboard Navigation -->
+<header class="header">
+    <nav class="nav">
+        <a href="/user/dashboard" class="nav-brand">KickNHit</a>
+        
+        <!-- Center navigation links -->
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="#products" class="nav-link">📦 PRODUCTS</a>
+                <a href="#cart" class="nav-link">
+                    🛒 CART
+                    <span id="cart-count" class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-user">
+            <!-- Search Bar -->
+            <div class="nav-search">
+                <input id="product-search" type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+                <span class="search-icon">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+            
+            <!-- Welcome Message -->
+            <span class="nav-user-info">WELCOME : <strong>{{user.firstName}}</strong></span>
+            
+            <!-- Logout Button -->
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-outline btn-sm">
+                    LOGOUT
+                </button>
+            </form>
+        </div>
+    </nav>
+</header>

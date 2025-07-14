@@ -8,20 +8,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="/" class="nav-brand">KickNHit</a>
-            <div class="nav-links">
-                <a href="#products" class="nav-link">PRODUCTS</a>
-                <a href="#about" class="nav-link">ABOUT</a>
-                <a href="#contact" class="nav-link">CONTACT</a>
-            </div>
-            <div class="nav-user">
-                <a href="/login" class="btn btn-outline">LOGIN</a>
-                <a href="/user/signup" class="btn btn-primary">SIGN UP</a>
-            </div>
-        </nav>
-    </header>
+    {{> navbar-landing}}
 
     <!-- Hero Section for Landing Page -->
     <section class="hero">
@@ -85,28 +72,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">25K+</div>
-                    <div class="stat-label">Happy Customers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Products</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Premium Brands</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Customer Support</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> stats}}
 
     <!-- Products Section -->
     <section id="products" class="section">
@@ -155,125 +121,13 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <div class="about-text">
-                <h2 class="about-title">Why Choose KickNHit?</h2>
-                <p class="about-description">
-                    Founded in 2014, KickNHit has become India's trusted sports equipment destination. From a small family business 
-                    to serving 25,000+ customers nationwide, we understand that the right equipment makes all the difference.
-                </p>
-                <p class="about-description">
-                    We partner with world-renowned brands, hand-selecting equipment through our team of former professional athletes. 
-                    From weekend players to state representatives, we've equipped athletes at every level.
-                </p>
-                <p class="about-description">
-                    Beyond selling equipment, we build lasting relationships with customers, providing expert advice and ongoing support 
-                    throughout your sporting journey. Join our community of passionate athletes.
-                </p>
-                
-                <!-- Additional Content Section -->
-                <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 1rem; color: white;">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">Our Promise to You</h3>
-                    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
-                        "We don't just sell sports equipment – we fuel dreams and champion victories. Every bat, ball, and boot 
-                        that leaves our store carries with it our commitment to excellence and our belief in your potential."
-                    </p>
-                    <p style="font-size: 0.9rem; font-style: italic; margin-bottom: 0;">
-                        - Ayush Singh, Founder & CEO, KickNHit
-                    </p>
-                </div>
-            </div>
-            
-            <div style="flex: 1; display: flex; flex-direction: column;">
-                <div class="about-image" style="margin-bottom: 1rem;">
-                    <img src="https://notoutcollectionsports.in/wp-content/uploads/2025/06/cricket-kit-displayed-neatly-sports-equipment-store.jpg" 
-                         alt="Our Store Display">
-                </div>
-                
-                <!-- Spacer to align with "Our Promise" section -->
-                <div style="height: 6rem;"></div>
-                
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🏆</div>
-                        <div class="about-feature-text">Trusted by 25,000+ Athletes</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">✅</div>
-                        <div class="about-feature-text">100% Authentic Products</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🚚</div>
-                        <div class="about-feature-text">Free Shipping Above ₹999</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🔄</div>
-                        <div class="about-feature-text">Easy 30-Day Returns</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">💬</div>
-                        <div class="about-feature-text">Expert Customer Support</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🎯</div>
-                        <div class="about-feature-text">Professional Equipment Testing</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> about}}
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-content">
-            <h2 class="contact-title">Get In Touch</h2>
-            <p class="contact-subtitle">We're here to help you find the perfect sports equipment</p>
-            
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <h3 class="contact-card-title">Visit Our Store</h3>
-                    <div class="contact-card-info">
-                        123 Sports Street<br>
-                        Equipment Plaza, Block A<br>
-                        New Delhi - 110001<br>
-                        India
-                    </div>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">📞</div>
-                    <h3 class="contact-card-title">Call Us</h3>
-                    <div class="contact-card-info">
-                        <a href="tel:+919876543210">+91 98765 6382</a><br>
-                        <a href="tel:+911147583692">+91 14263 8293</a><br>
-                        <small>Mon-Sat: 9:00 AM - 8:00 PM<br>
-                        Sunday: 10:00 AM - 6:00 PM</small>
-                    </div>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">✉️</div>
-                    <h3 class="contact-card-title">Email Us</h3>
-                    <div class="contact-card-info">
-                        <a href="mailto:support@kicknhit.com">support@kicknhit.com</a><br>
-                        <a href="mailto:orders@kicknhit.com">orders@kicknhit.com</a><br>
-                        <small>We respond within 24 hours<br>
-                        Customer support available 24/7</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{> contact}}
 
     <!-- Footer -->
-    <footer style="background: #374151; color: #d1d5db; padding: 2rem 0; text-align: center;">
-        <div class="container">
-            <p>&copy; 2024 KickNHit. All rights reserved.</p>
-            <p>Your trusted sports equipment partner</p>
-        </div>
-    </footer>
+    {{> footer}}
 
     <!-- JavaScript for Auto-rotating Carousel -->
     <script>

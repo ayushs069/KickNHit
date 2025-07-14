@@ -1,0 +1,91 @@
+<!-- Featured Products -->
+<section id="featured" class="section" style="background: #f9fafb;">
+    <div class="container-wide">
+        <div class="section-title">Featured Products</div>
+        <div class="section-description">Hand-picked favorites loved by professionals</div>
+
+        <!-- Standardized grid layout for consistent dimensions -->
+        <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <!-- Featured Cricket Bat -->
+            <div class="card featured-card" data-product-id="featured-bat">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://admin.thecricketer.com/weblab/sites/96c8b790-b593-bfda-0ba4-ecd3a9fdefc2/resources/images/site/kookaburra_nickel_4.1.jpg"
+                        alt="Professional Cricket Bat" class="card-img">
+                    <div class="featured-badge">FEATURED</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Professional Cricket Bat{{#if userDashboard}} Pro{{/if}}</h3>
+                    <p class="card-description">Premium English {{#if userDashboard}}willow, used by international players{{else}}Willow - used by International players{{/if}}</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹4,999</span>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('featured-bat', 'Professional Cricket Bat Pro', 4999)" class="btn btn-primary btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Football Boots -->
+            <div class="card featured-card" data-product-id="featured-boots">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://preview.free3d.com/img/2010/06/1871863703398254318/o29lvvye.jpg"
+                        alt="Professional Football Boots" class="card-img">
+                    <div class="featured-badge">FEATURED</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Elite Football Boots</h3>
+                    <p class="card-description">Professional grade boots with advanced grip technology</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹5,999</span>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('featured-boots', 'Elite Football Boots', 5999)" class="btn btn-primary btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Kit -->
+            <div class="card featured-card" data-product-id="featured-kit">
+                <div class="card-img-container" style="position: relative;">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2024/6/424095483/DF/VP/RY/163043379/whatsapp-image-2024-06-01-at-3-26-20-pm-500x500.jpeg"
+                        alt="Complete Cricket Kit" class="card-img">
+                    <div class="featured-badge">FEATURED</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Complete Cricket Kit</h3>
+                    <p class="card-description">Everything you need: bat, pads, gloves, helmet</p>
+                    <div class="card-footer">
+                        <span class="card-price">₹8,999</span>
+                        <div class="card-actions">
+                            {{#if userDashboard}}
+                                <button onclick="addToCart('featured-kit', 'Complete Cricket Kit', 8999)" class="btn btn-primary btn-sm">
+                                    Add to Cart
+                                </button>
+                            {{else}}
+                                <span class="btn btn-outline btn-sm" style="cursor: default; opacity: 0.6;">
+                                    Demo Product
+                                </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

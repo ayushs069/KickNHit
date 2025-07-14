@@ -1,0 +1,83 @@
+<!-- Product Categories Section -->
+<section id="products" class="section">
+    <div class="container-wide">
+        <div class="section-title">
+            {{#if isAdmin}}
+                Current Product Catalog
+            {{else}}
+                Shop by Category
+            {{/if}}
+        </div>
+        <div class="section-description">
+            {{#if isAdmin}}
+                View all products that customers can see and purchase
+            {{else}}
+                Find exactly what you need for your sport. Browse our extensive collection of professional-grade cricket and football equipment, designed for players at every level.
+            {{/if}}
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="tabs">
+            <div class="tab-container">
+                <button onclick="showCategory('cricket')" id="cricket-tab" class="tab-button active">
+                    🏏 Cricket
+                </button>
+                <button onclick="showCategory('football')" id="football-tab" class="tab-button">
+                    ⚽ Football
+                </button>
+            </div>
+        </div>
+
+        <!-- Cricket Products -->
+        <div id="cricket-products">
+            <!-- Carousel view (when more than 3 products) -->
+            <div id="cricket-carousel" class="hidden">
+                <div class="carousel-controls">
+                    <h3 style="font-size: 1.25rem; font-weight: bold;">Cricket Products</h3>
+                    <div class="carousel-nav">
+                        <button onclick="scrollCarousel('cricket-carousel-items', -1)" class="carousel-btn">
+                            ←
+                        </button>
+                        <button onclick="scrollCarousel('cricket-carousel-items', 1)" class="carousel-btn">
+                            →
+                        </button>
+                    </div>
+                </div>
+                <div class="product-carousel" id="cricket-carousel-items">
+                    <!-- Products will appear here when in carousel mode -->
+                </div>
+            </div>
+            
+            <!-- Grid view (when 3 or fewer products) -->
+            <div id="cricket-grid" class="product-grid">
+                <!-- Products will be loaded dynamically from API -->
+            </div>
+        </div>
+
+        <!-- Football Products -->
+        <div id="football-products" class="hidden">
+            <!-- Carousel view (when more than 3 products) -->
+            <div id="football-carousel" class="hidden">
+                <div class="carousel-controls">
+                    <h3 style="font-size: 1.25rem; font-weight: bold;">Football Products</h3>
+                    <div class="carousel-nav">
+                        <button onclick="scrollCarousel('football-carousel-items', -1)" class="carousel-btn">
+                            ←
+                        </button>
+                        <button onclick="scrollCarousel('football-carousel-items', 1)" class="carousel-btn">
+                            →
+                        </button>
+                    </div>
+                </div>
+                <div class="product-carousel" id="football-carousel-items">
+                    <!-- Products will appear here when in carousel mode -->
+                </div>
+            </div>
+            
+            <!-- Grid view (when 3 or fewer products) -->
+            <div id="football-grid" class="product-grid">
+                <!-- Products will be loaded dynamically from API -->
+            </div>
+        </div>
+    </div>
+</section>
